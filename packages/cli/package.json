@@ -1,0 +1,24 @@
+{
+  "name": "cli",
+  "version": "0.0.1",
+  "description": " command line  interface for use handy to build your react app ",
+  "main": "bin/handy.js",
+  "bin": {
+    "handy": "bin/handy.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^2.4.1",
+    "commander": "^2.16.0",
+    "fs-extra": "^6.0.1",
+    "globby": "^8.0.1",
+    "inquirer": "^6.0.0"
+  },
+  "engines": {
+    "node": ">=8.9"
+  }
+}

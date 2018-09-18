@@ -1,0 +1,6 @@
+{
+  "extends": "airbnb-base/legacy",
+  "rules": {
+    "quotes": [2, "double"]
+  }
+}
