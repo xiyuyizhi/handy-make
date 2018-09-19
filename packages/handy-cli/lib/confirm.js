@@ -1,5 +1,5 @@
 const inquirer = require("inquirer");
-
+const defaultPreset = require("../util/defaultPreset");
 class Confirm {
   constructor(appName, promptsList) {
     this.appName = appName;
@@ -7,7 +7,7 @@ class Confirm {
     this.presets = this.presetList();
     this.featureList = {
       type: "checkbox",
-      name: "manualFeature",
+      name: "features",
       message: "手动选择",
       when: answers => {
         return answers.preset === "manual";
@@ -20,11 +20,13 @@ class Confirm {
     });
   }
 
-  confirm() {
+  async confirm() {
     this.confirmList = [...this.presets, this.featureList, ...this.promptBelowFeature];
-    inquirer.prompt(this.confirmList).then(answers => {
-      console.log(answers);
-    });
+    const answers = await inquirer.prompt(this.confirmList);
+    if (answers.preset === "default") {
+      return defaultPreset;
+    }
+    return answers;
   }
 
   presetList() {

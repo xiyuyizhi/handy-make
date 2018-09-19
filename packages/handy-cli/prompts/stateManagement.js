@@ -9,12 +9,12 @@ module.exports = api => {
     name: "state",
     message: "请选择要使用的状态管理方式",
     when: answers => {
-      return answers.manualFeature.includes("state");
+      return answers.features && answers.features.includes("state");
     },
     choices: [
       {
         name: "default(reactContextApi)",
-        value: "defaultState"
+        value: "reactContextApi"
       },
       {
         name: "mobx",
