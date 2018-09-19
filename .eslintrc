@@ -1,9 +1,16 @@
 {
   "extends": "airbnb-base/legacy",
+  "parserOptions": {
+    "ecmaVersion": 2017
+  },
   "env": {
-    "es6": true
+    "es6": true,
+    "node": true
   },
   "rules": {
-    "quotes": [2, "double"]
+    "quotes": [2, "double"],
+    "no-console": 0,
+    "global-require": 0,
+    "class-methods-use-this": 0
   }
 }
