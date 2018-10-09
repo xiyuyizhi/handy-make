@@ -1,0 +1,125 @@
+html,
+body {
+  height: 100%;
+}
+
+html,
+body,
+ul {
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  list-style: none;
+}
+
+.git_search_context {
+  width: 980px;
+  margin: auto;
+}
+
+.git_search_search {
+  height: 80px;
+  line-height: 80px;
+  text-align: center;
+}
+.git_search_search_fixed {
+  position: fixed;
+  width: 100%;
+  height: 100px;
+  background: white;
+  top: 0;
+  left: 0;
+}
+
+.git_search_input {
+  width: 600px;
+  height: 40px;
+  background: none;
+  border: none;
+  outline: none;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 10px 20px 0 rgba(0, 0, 0, 0.1);
+  font-size: 20px;
+  text-indent: 10px;
+  font-style: italic;
+  font-weight: 300;
+  color: #999;
+}
+
+.git_search_input::-webkit-input-placeholder {
+  color: #e6e6e6;
+}
+
+.git_search_input::-moz-placeholder {
+  color: #e6e6e6;
+}
+
+.git_search_input::input-placeholder {
+  color: #e6e6e6;
+}
+
+.git_search_search_input_wrapper {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+  padding: 0 5px;
+}
+
+.git_search_search_loading {
+  top: -22px;
+  right: 10px;
+  line-height: normal;
+  position: absolute;
+  color: #eee;
+  font-weight: bold;
+  text-shadow: 1px 48px #eee, 3px 48px #999;
+}
+
+.git_search_list li {
+  height: 100px;
+  line-height: 100px;
+  margin-bottom: 10px;
+}
+
+.git_search_noData {
+  text-align: center;
+}
+
+.list_item {
+  box-shadow: 1px 1px 5px #eee;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.list_item_fullname {
+  font-size: 25px;
+  text-decoration: none;
+}
+
+.list_item_header {
+  height: 40px;
+  line-height: 40px;
+  margin: 0 0 5px 0;
+}
+
+.list_item_avatar {
+  width: 30px;
+  border-radius: 50%;
+  position: relative;
+  top: 5px;
+  margin-right: 5px;
+}
+
+.list_item_right {
+  float: right;
+  width: 200px;
+}
+
+.list_item_star {
+  float: right;
+}
+
+.list_item_des {
+  margin: 5px 0 0 0;
+}

@@ -6,6 +6,23 @@ module.exports = api => {
 
   api.addChoicesBelowFeature({
     type: "list",
+    name: "eslint",
+    message: "eslint type",
+    when: answers => answers.features && answers.features.includes("eslint"),
+    choices: [
+      {
+        name: "eslint with prettier",
+        value: "prettier"
+      },
+      {
+        name: "eslint with airbnb",
+        value: "airbnb"
+      }
+    ]
+  });
+
+  api.addChoicesBelowFeature({
+    type: "list",
     name: "eslintCondition",
     message: "代码校验时机选择",
     when: answers => answers.features && answers.features.includes("eslint"),
@@ -19,5 +36,11 @@ module.exports = api => {
         value: "commit"
       }
     ]
+  });
+
+  api.addPluginsCallback(answers => {
+    if (answers.features.includes("eslint")) {
+      api.plugins.push("handy-cli-plugin-eslint");
+    }
   });
 };

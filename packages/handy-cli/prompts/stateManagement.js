@@ -1,7 +1,7 @@
 module.exports = api => {
   api.addFeature({
     name: "state management",
-    value: "state"
+    value: "stateManagement"
   });
 
   api.addChoicesBelowFeature({

@@ -1,0 +1,15 @@
+{
+  "name": "aaa",
+  "version": "0.0.1",
+  "devDependencies": {
+    "handy-service": "latest"
+  },
+  "scripts": {
+    "start": "handy-service serve",
+    "build": "handy-service build"
+  },
+  "preset": {
+    "preset": "manual",
+    "features": []
+  }
+}

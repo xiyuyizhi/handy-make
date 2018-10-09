@@ -4,7 +4,9 @@ class Confirm {
   constructor(appName, promptsList) {
     this.appName = appName;
     this.confirmList = [];
+    this.pluginsCallback = [];
     this.presets = this.presetList();
+    this.plugins = []; // 存贮选择的feature对象的plugin模块
     this.featureList = {
       type: "checkbox",
       name: "features",
@@ -15,18 +17,24 @@ class Confirm {
       choices: []
     };
     this.promptBelowFeature = [];
-    promptsList.forEach(item => {
-      item(this);
+    promptsList.forEach(prompt => {
+      prompt(this);
     });
   }
 
   async confirm() {
     this.confirmList = [...this.presets, this.featureList, ...this.promptBelowFeature];
-    const answers = await inquirer.prompt(this.confirmList);
+    let answers = await inquirer.prompt(this.confirmList);
     if (answers.preset === "default") {
-      return defaultPreset;
+      answers = defaultPreset;
     }
-    return answers;
+    this.pluginsCallback.forEach(fn => {
+      fn(answers);
+    });
+    return {
+      answers,
+      plugins: this.plugins
+    };
   }
 
   presetList() {
@@ -59,6 +67,10 @@ class Confirm {
     } else {
       this.promptBelowFeature = [...this.promptBelowFeature, choice];
     }
+  }
+
+  addPluginsCallback(fn) {
+    this.pluginsCallback.push(fn);
   }
 }
 

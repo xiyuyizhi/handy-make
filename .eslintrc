@@ -1,7 +1,13 @@
 {
+  "parser": "babel-eslint",
   "extends": "airbnb-base/legacy",
   "parserOptions": {
-    "ecmaVersion": 2017
+    "ecmaVersion": 2017,
+    "sourceType": "module"
+  },
+  "globals": {
+    "React": true,
+    "Fragment": true
   },
   "env": {
     "es6": true,
@@ -11,6 +17,10 @@
     "quotes": [2, "double"],
     "no-console": 0,
     "global-require": 0,
-    "class-methods-use-this": 0
+    "class-methods-use-this": 0,
+    "consistent-return": 0,
+    "no-use-before-define": 0,
+    "func-names": 0,
+    "no-param-reassign": 0
   }
 }
