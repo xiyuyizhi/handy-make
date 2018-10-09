@@ -63,7 +63,7 @@ const eslintWhenSave = {
     configFile: ".eslintrc"
   }
 };
-
+console.log(multiPage.appEntries);
 const config = {
   mode: "development",
   devtool: "cheap-module-source-map",
@@ -111,21 +111,27 @@ const config = {
             options: {
               presets: [
                 [
-                  "@babel/preset-env",
+                  require("@babel/preset-env"),
                   {
                     useBuiltIns: "entry"
                   }
                 ],
                 [
-                  "@babel/preset-react",
+                  require("@babel/preset-react"),
                   {
                     development: true
                   }
                 ]
               ],
               plugins: [
-                ["@babel/plugin-proposal-decorators", { legacy: true }],
-                ["@babel/plugin-proposal-class-properties", { loose: true }]
+                [
+                  require("@babel/plugin-proposal-decorators"),
+                  { legacy: true }
+                ],
+                [
+                  require("@babel/plugin-proposal-class-properties"),
+                  { loose: true }
+                ]
               ]
             }
           },
@@ -146,7 +152,10 @@ const config = {
           {
             test: sassRegex,
             exclude: sassModuleRegex,
-            use: getStyleLoaders({ importLoaders: 2 }, "sass-loader")
+            use: getStyleLoaders(
+              { importLoaders: 2 },
+              "sass-loader"
+            )
           },
           {
             test: sassModuleRegex,
@@ -158,7 +167,10 @@ const config = {
           {
             test: lessRegex,
             exclude: lessModuleRegex,
-            use: getStyleLoaders({ importLoaders: 2 }, "less-loader")
+            use: getStyleLoaders(
+              { importLoaders: 2 },
+              "less-loader"
+            )
           },
           {
             test: lessModuleRegex,
@@ -170,7 +182,10 @@ const config = {
           {
             test: stylusRegex,
             exclude: stylusModuleRegex,
-            use: getStyleLoaders({ importLoaders: 2 }, "stylus-loader")
+            use: getStyleLoaders(
+              { importLoaders: 2 },
+              "stylus-loader"
+            )
           },
           {
             test: stylusModuleRegex,

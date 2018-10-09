@@ -1,6 +1,7 @@
 module.exports = {
-  preset: "default",
-  features: ["eslint", "state", "unit"],
-  eslintCondition: "commit",
-  state: "reactContextAPI"
+    preset: "default",
+    features: ["eslint", "stateManagement", "unit"],
+    eslint: "airbnb",
+    eslintCondition: "commit",
+    state: "mobx"
 };

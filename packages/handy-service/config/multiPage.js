@@ -9,9 +9,11 @@ const pages = fs.readdirSync(pagesPaths);
 
 function getEntries() {
   return pages.reduce((all, page) => {
-    all[page] = [path.join(appDirectory, "src", "pages", page)];
+    all[page] = [path.join(appDirectory, "src", "pages", page, "index.js")];
     if (process.env.NODE_ENV !== "production") {
-      all[page].unshift(require.resolve("react-dev-utils/webpackHotDevClient"));
+      all[page].unshift(
+        require.resolve("react-dev-utils/webpackHotDevClient")
+      );
     }
     return all;
   }, {});

@@ -14,7 +14,7 @@ process.env.NODE_ENV = "production";
 // Makes the script crash on unhandled rejections instead of silently
 // ignoring them. In the future, promise rejections that are not handled will
 // terminate the Node.js process with a non-zero exit code.
-process.on("unhandledRejection", (err) => {
+process.on("unhandledRejection", err => {
   throw err;
 });
 
@@ -33,7 +33,10 @@ const printBuildError = require("react-dev-utils/printBuildError");
 const paths = require("../config/paths");
 const config = require("../config/webpack.config.prod");
 
-const { measureFileSizesBeforeBuild, printFileSizesAfterBuild } = FileSizeReporter;
+const {
+  measureFileSizesBeforeBuild,
+  printFileSizesAfterBuild
+} = FileSizeReporter;
 const useYarn = fs.existsSync(paths.yarnLockFile);
 
 // These sizes are pretty large. We'll warn for bundles exceeding them.
@@ -41,14 +44,14 @@ const WARN_AFTER_BUNDLE_GZIP_SIZE = 512 * 1024;
 const WARN_AFTER_CHUNK_GZIP_SIZE = 1024 * 1024;
 
 // Warn and crash if required files are missing
-if (!checkRequiredFiles([paths.appHtml, paths.appIndexJs])) {
-  process.exit(1);
-}
+// if (!checkRequiredFiles([paths.appHtml, paths.appIndexJs])) {
+//   process.exit(1);
+// }
 
 // First, read the current file sizes in build directory.
 // This lets us display how much they changed later.
 measureFileSizesBeforeBuild(paths.appBuild)
-  .then((previousFileSizes) => {
+  .then(previousFileSizes => {
     // Remove all content but keep the directory so that
     // if you're in it, you don't end up in Trash
     fs.emptyDirSync(paths.appBuild);
@@ -64,11 +67,13 @@ measureFileSizesBeforeBuild(paths.appBuild)
         console.log(warnings.join("\n\n"));
         console.log(
           `\nSearch for the ${chalk.underline(
-            chalk.yellow("keywords"),
-          )} to learn more about each warning.`,
+            chalk.yellow("keywords")
+          )} to learn more about each warning.`
         );
         console.log(
-          `To ignore, add ${chalk.cyan("// eslint-disable-next-line")} to the line before.\n`,
+          `To ignore, add ${chalk.cyan(
+            "// eslint-disable-next-line"
+          )} to the line before.\n`
         );
       } else {
         console.log(chalk.green("Compiled successfully.\n"));
@@ -80,7 +85,7 @@ measureFileSizesBeforeBuild(paths.appBuild)
         previousFileSizes,
         paths.appBuild,
         WARN_AFTER_BUNDLE_GZIP_SIZE,
-        WARN_AFTER_CHUNK_GZIP_SIZE,
+        WARN_AFTER_CHUNK_GZIP_SIZE
       );
       console.log();
 
@@ -88,13 +93,19 @@ measureFileSizesBeforeBuild(paths.appBuild)
       const { publicUrl } = paths;
       const { publicPath } = config.output;
       const buildFolder = path.relative(process.cwd(), paths.appBuild);
-      printHostingInstructions(appPackage, publicUrl, publicPath, buildFolder, useYarn);
+      printHostingInstructions(
+        appPackage,
+        publicUrl,
+        publicPath,
+        buildFolder,
+        useYarn
+      );
     },
-    (err) => {
+    err => {
       console.log(chalk.red("Failed to compile.\n"));
       printBuildError(err);
       process.exit(1);
-    },
+    }
   );
 
 // Create the production build and print the deployment instructions.
@@ -118,14 +129,15 @@ function build(previousFileSizes) {
       }
       if (
         process.env.CI
-        && (typeof process.env.CI !== "string" || process.env.CI.toLowerCase() !== "false")
-        && messages.warnings.length
+                && (typeof process.env.CI !== "string"
+                    || process.env.CI.toLowerCase() !== "false")
+                && messages.warnings.length
       ) {
         console.log(
           chalk.yellow(
             "\nTreating warnings as errors because process.env.CI = true.\n"
-              + "Most CI servers set it automatically.\n",
-          ),
+                            + "Most CI servers set it automatically.\n"
+          )
         );
         return reject(new Error(messages.warnings.join("\n\n")));
       }

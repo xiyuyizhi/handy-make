@@ -139,14 +139,14 @@ const config = {
             options: {
               presets: [
                 [
-                  "@babel/preset-env",
+                  require("@babel/preset-env"),
                   {
                     useBuiltIns: "entry",
                     modules: false
                   }
                 ],
                 [
-                  "@babel/preset-react",
+                  require("@babel/preset-react"),
                   {
                     development: false
                   }
@@ -154,8 +154,14 @@ const config = {
               ],
               compact: true,
               plugins: [
-                ["@babel/plugin-proposal-decorators", { legacy: true }],
-                ["@babel/plugin-proposal-class-properties", { loose: true }]
+                [
+                  require("@babel/plugin-proposal-decorators"),
+                  { legacy: true }
+                ],
+                [
+                  require("@babel/plugin-proposal-class-properties"),
+                  { loose: true }
+                ]
               ]
             }
           },
