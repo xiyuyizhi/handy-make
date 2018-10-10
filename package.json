@@ -1,52 +1,51 @@
 {
-    "private": true,
-    "name": "handy-make",
-    "version": "0.0.1",
-    "description": "the scaffolding to build react app, with multiple state management methods to select",
-    "main": "index.js",
-    "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
-    },
-    "keywords": [
-        "react",
-        "react-scaffolding",
-        "scaffolding",
-        "state-management"
-    ],
-    "author": "xiyuyizhi",
-    "license": "ISC",
-    "husky": {
-        "hooks": {
-            "pre-commit": "lint-staged",
-            "commit-msg": "node ./scripts/verifyCommitMsg.js"
-        }
-    },
-    "lint-staged": {
-        "linters": {
-            "*.js": [
-                "eslint --fix",
-                "git add"
-            ]
-        },
-        "ignore": [
-            "**/build/**.js"
-        ]
-    },
-    "devDependencies": {
-        "chalk": "^2.4.1",
-        "eslint": "^5.6.0",
-        "eslint-config-airbnb-base": "^13.1.0",
-        "eslint-plugin-import": "^2.14.0",
-        "lerna": "^3.0.0-beta.21",
-        "lint-staged": "^7.2.2"
-    },
-    "dependencies": {
-        "babel-eslint": "^10.0.1",
-        "husky": "^1.1.1",
-        "react": "^16.5.2",
-        "react-dev-utils": "^5.0.2",
-        "react-dom": "^16.5.2",
-        "react-router-dom": "^4.3.1",
-        "whatwg-fetch": "^3.0.0"
+  "private": true,
+  "name": "handy-make",
+  "version": "0.0.1",
+  "description": "the scaffolding to build react app, with multiple state management methods to select",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "react",
+    "react-scaffolding",
+    "scaffolding",
+    "state-management"
+  ],
+  "author": "xiyuyizhi",
+  "license": "ISC",
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
     }
+  },
+  "lint-staged": {
+    "linters": {
+      "*.js": [
+        "eslint --fix",
+        "git add"
+      ]
+    },
+    "ignore": [
+      "**/build/**.js"
+    ]
+  },
+  "devDependencies": {
+    "chalk": "^2.4.1",
+    "eslint": "^5.6.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.14.0",
+    "lerna": "^3.0.0-beta.21",
+    "lint-staged": "^7.2.2"
+  },
+  "dependencies": {
+    "babel-eslint": "^10.0.1",
+    "husky": "^1.1.1",
+    "react": "^16.5.2",
+    "react-dev-utils": "^5.0.2",
+    "react-dom": "^16.5.2",
+    "react-router-dom": "^4.3.1",
+    "whatwg-fetch": "^3.0.0"
+  }
 }
