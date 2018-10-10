@@ -2,7 +2,7 @@ import MobxGitSearch from "modules/mobxGitSearch";
 
 export default [
   {
-    path: "/redux",
+    path: "/",
     exact: true,
     component: MobxGitSearch
   }

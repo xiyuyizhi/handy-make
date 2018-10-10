@@ -15,11 +15,11 @@ class Search extends React.Component {
     };
   }
 
-  fetchRepos = keyword => {
+  fetchRepos = (keyword) => {
     this.props.getUserInput(keyword);
   };
 
-  onChangeHandle = e => {
+  onChangeHandle = (e) => {
     this.fetchRepos(e.target.value);
   };
 

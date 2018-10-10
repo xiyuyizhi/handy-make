@@ -6,7 +6,7 @@ const inquirer = require("inquirer");
 const { getModuleList } = require("../util/getModuleList");
 const Confirm = require("./Confirm.js");
 const Package = require("../util/package.js");
-const symlink = require("handy-utils-shared/symlink");
+const { symlink, getPkgVersion } = require("handy-utils-shared");
 const DEV_DEBUG = process.env.NODE_ENV === "DEV" || process.env.NODE_ENV === "DEBUG";
 
 async function creator(appName) {
@@ -30,12 +30,15 @@ async function creator(appName) {
 
   const confirm = new Confirm(appName, getModuleList(path.resolve(__dirname, "../", "prompts")));
   const { answers, plugins } = await confirm.confirm();
+
+  const cliVersion = getPkgVersion(path.join(__dirname, "../", "package.json"));
+
   const pkg = {
     name: appName,
     version: "0.0.1",
     dependencies: {},
     devDependencies: {
-      "handy-service": "^0.0.1"
+      "handy-service": `^${cliVersion}`
     },
     scripts: {
       start: "handy-service serve",
@@ -45,7 +48,6 @@ async function creator(appName) {
   pkg.presets = answers;
   const ppk = new Package();
   ppk.write(path.resolve(appDir, "package.json"), JSON.stringify(pkg, null, 2));
-  console.log(answers);
 
   // install devDependencies
   console.log("install devDependencies.....");
@@ -64,8 +66,6 @@ async function creator(appName) {
   plugins.forEach(modu => {
     require(modu)(appDir, answers);
   });
-
-  console.log(answers);
 }
 
 module.exports = creator;

@@ -5,7 +5,7 @@
   "description": "the scaffolding to build react app, with multiple state management methods to select",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "lint": "eslint --ext .js ./packages --fix"
   },
   "keywords": [
     "react",

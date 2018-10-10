@@ -17,7 +17,7 @@ export default class IndexGitSearch extends React.Component {
     };
   }
 
-  getUserInput = keyword => {
+  getUserInput = (keyword) => {
     if (!keyword) return;
     this.keyword = keyword;
     this.page = 1;
@@ -29,15 +29,13 @@ export default class IndexGitSearch extends React.Component {
       fetchStart: true,
       list: this.page === 1 ? [] : this.state.list
     });
-    Fetcher.fecthRepos(this.keyword, this.page).then(data => {
+    Fetcher.fecthRepos(this.keyword, this.page).then((data) => {
       if (!data.items) {
         alert(data.message);
       } else if (this.page !== 1) {
-        this.setState(preState => {
-          return {
-            list: [...preState.list, ...data.items]
-          };
-        });
+        this.setState(preState => ({
+          list: [...preState.list, ...data.items]
+        }));
       } else {
         this.setState({
           list: data.items
@@ -51,7 +49,7 @@ export default class IndexGitSearch extends React.Component {
   };
 
   loadNextPage = () => {
-    this.page++;
+    this.page += 1;
     this.fetchRepos();
   };
 

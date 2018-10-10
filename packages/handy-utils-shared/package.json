@@ -1,9 +1,11 @@
 {
   "name": "handy-utils-shared",
   "version": "0.0.3",
+  "main": "index.js",
   "dependencies": {
     "cmd-shim": "^2.0.2",
-    "fs-extra": "^6.0.1"
+    "fs-extra": "^6.0.1",
+    "execa": "^1.0.0"
   },
   "gitHead": "41f5556f66e3ec9c717e67a56eae35e7902539ca"
 }

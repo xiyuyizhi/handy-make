@@ -25,7 +25,6 @@ const path = require("path");
 const chalk = require("chalk");
 const fs = require("fs-extra");
 const webpack = require("webpack");
-const checkRequiredFiles = require("react-dev-utils/checkRequiredFiles");
 const formatWebpackMessages = require("react-dev-utils/formatWebpackMessages");
 const printHostingInstructions = require("react-dev-utils/printHostingInstructions");
 const FileSizeReporter = require("react-dev-utils/FileSizeReporter");
@@ -33,10 +32,7 @@ const printBuildError = require("react-dev-utils/printBuildError");
 const paths = require("../config/paths");
 const config = require("../config/webpack.config.prod");
 
-const {
-  measureFileSizesBeforeBuild,
-  printFileSizesAfterBuild
-} = FileSizeReporter;
+const { measureFileSizesBeforeBuild, printFileSizesAfterBuild } = FileSizeReporter;
 const useYarn = fs.existsSync(paths.yarnLockFile);
 
 // These sizes are pretty large. We'll warn for bundles exceeding them.
@@ -71,9 +67,7 @@ measureFileSizesBeforeBuild(paths.appBuild)
           )} to learn more about each warning.`
         );
         console.log(
-          `To ignore, add ${chalk.cyan(
-            "// eslint-disable-next-line"
-          )} to the line before.\n`
+          `To ignore, add ${chalk.cyan("// eslint-disable-next-line")} to the line before.\n`
         );
       } else {
         console.log(chalk.green("Compiled successfully.\n"));
@@ -93,13 +87,7 @@ measureFileSizesBeforeBuild(paths.appBuild)
       const { publicUrl } = paths;
       const { publicPath } = config.output;
       const buildFolder = path.relative(process.cwd(), paths.appBuild);
-      printHostingInstructions(
-        appPackage,
-        publicUrl,
-        publicPath,
-        buildFolder,
-        useYarn
-      );
+      printHostingInstructions(appPackage, publicUrl, publicPath, buildFolder, useYarn);
     },
     err => {
       console.log(chalk.red("Failed to compile.\n"));
@@ -129,14 +117,13 @@ function build(previousFileSizes) {
       }
       if (
         process.env.CI
-                && (typeof process.env.CI !== "string"
-                    || process.env.CI.toLowerCase() !== "false")
-                && messages.warnings.length
+        && (typeof process.env.CI !== "string" || process.env.CI.toLowerCase() !== "false")
+        && messages.warnings.length
       ) {
         console.log(
           chalk.yellow(
             "\nTreating warnings as errors because process.env.CI = true.\n"
-                            + "Most CI servers set it automatically.\n"
+              + "Most CI servers set it automatically.\n"
           )
         );
         return reject(new Error(messages.warnings.join("\n\n")));

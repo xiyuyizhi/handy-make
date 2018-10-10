@@ -6,10 +6,10 @@
     "sourceType": "module"
   },
   "globals": {
-    "React": true,
-    "Fragment": true
+    "React": true
   },
   "env": {
+    "browser": true,
     "es6": true,
     "node": true
   },

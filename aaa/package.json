@@ -2,7 +2,7 @@
   "name": "aaa",
   "version": "0.0.1",
   "dependencies": {
-    "handy-demo-common": "^0.0.1",
+    "handy-demo-common": "^0.0.3",
     "mobx": "^5.5.0",
     "mobx-react": "^5.2.8",
     "react": "^16.5.2",
@@ -11,7 +11,7 @@
     "whatwg-fetch": "^3.0.0"
   },
   "devDependencies": {
-    "handy-service": "^0.0.1"
+    "handy-service": "^0.0.3"
   },
   "scripts": {
     "start": "handy-service serve",
