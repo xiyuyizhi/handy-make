@@ -3,21 +3,21 @@ const fs = require("fs-extra");
 const chalk = require("chalk");
 const inquirer = require("inquirer");
 const execa = require("execa");
+const { symlink, getPkgVersion, installDeps } = require("handy-utils-shared");
 const { getModuleList } = require("../util/getModuleList");
 const Prompt = require("./Prompt.js");
-const Package = require("../util/package.js");
 
-const { symlink, getPkgVersion, installDeps } = require("handy-utils-shared");
 const DEV_DEBUG = process.env.NODE_ENV === "DEV" || process.env.NODE_ENV === "DEBUG";
 
 async function creator(appName) {
   const appDir = path.resolve(process.cwd(), appName);
+
   if (fs.existsSync(appDir)) {
     const { override } = await inquirer.prompt([
       {
         type: "confirm",
         name: "override",
-        message: chalk.red(`当前目录 ${appName} 存在,是否覆盖?`)
+        message: chalk.red(`directory ${appName} exist,override it?`)
       }
     ]);
     if (override) {
@@ -49,27 +49,24 @@ async function creator(appName) {
     }
   };
   pkg.presets = answers;
-  const ppk = new Package();
-  ppk.write(path.resolve(appDir, "package.json"), JSON.stringify(pkg, null, 2));
 
-  // git init
+  fs.writeFileSync(path.resolve(appDir, "package.json"), JSON.stringify(pkg, null, 2));
+
+  console.log(chalk.green("git init..."));
   execa.sync("git", ["init"], {
     cwd: appDir
   });
 
-  console.log("generate project structure...");
+  console.log(chalk.green("generate project structure..."));
   plugins.forEach(modu => {
     require(modu)(appDir, answers);
   });
 
   // install dependencies
+  console.log(chalk.green("install dependencies....."));
   const appPackage = path.join(appDir, "package.json");
   let appPkg = fs.readJsonSync(appPackage);
-
   const { dependencies, devDependencies } = appPkg;
-
-  // install deps
-  console.log(chalk.green("install dependencies....."));
   if (DEV_DEBUG) {
     try {
       await installDeps(
@@ -102,8 +99,15 @@ async function creator(appName) {
   } else {
     installDeps(null, appDir);
   }
-
   console.log(chalk.green("install dependencies finish"));
+
+  console.log(
+    chalk.yellow(`
+      now,you can ${chalk.red(`cd ${appName}`)},\n
+      run ${chalk.red("npm run start")} to start server, \n
+      and ${chalk.red("npm run build")} to build you app
+  `)
+  );
 }
 
 module.exports = creator;

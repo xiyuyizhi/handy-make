@@ -10,7 +10,7 @@ class Prompt {
     this.featureList = {
       type: "checkbox",
       name: "features",
-      message: "手动选择",
+      message: "manual select features",
       when: answers => {
         return answers.preset === "manual";
       },
@@ -42,14 +42,14 @@ class Prompt {
       {
         type: "list",
         name: "preset",
-        message: "请选择要包含的特性",
+        message: "select then features include in you app",
         choices: [
           {
-            name: "default(eslint,unit test,stateManage(normal))",
+            name: "default(eslint,stateManage(normal))",
             value: "default"
           },
           {
-            name: "手动选择",
+            name: "maual select",
             value: "manual"
           }
         ]

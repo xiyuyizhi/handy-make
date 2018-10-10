@@ -2,14 +2,14 @@ class ResultItem extends React.Component {
   static displayName = "ResultItem";
 
   static propTypes = {
-    repoInfo: PropTypes.object.isRequired,
+    repoInfo: PropTypes.object.isRequired
   };
 
   static defaultProps = {};
 
   computedStarCount(count) {
     if (count > 1000) {
-      return `${(count / 1000).toFixed(1)}k`;
+      return (count / 1000).toFixed(1) + "k";
     }
     return count;
   }
@@ -28,9 +28,7 @@ class ResultItem extends React.Component {
           <span className="list_item_right">
             <span>{repoInfo.language}</span>
             <span className="list_item_star">
-              {this.computedStarCount(repoInfo.stargazers_count)}
-              {" "}
-star
+              {this.computedStarCount(repoInfo.stargazers_count)} star
             </span>
           </span>
         </p>
