@@ -61,7 +61,6 @@ async function creator(appName) {
   plugins.forEach(modu => {
     require(modu)(appDir, answers);
   });
-
   // install dependencies
   console.log(chalk.green("install dependencies..."));
   const appPackage = path.join(appDir, "package.json");

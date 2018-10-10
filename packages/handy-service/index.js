@@ -18,9 +18,15 @@ const pkgStateDependencies = {
 module.exports = async (appDir, answers) => {
   const { state = "normal" } = answers;
 
-  [".gitignore", "public", "src"].forEach(x => {
+  ["public", "src"].forEach(x => {
     execa.sync("cp", ["-r", path.join(__dirname, "demo", x), appDir]);
   });
+
+  fs.writeFileSync(path.join(appDir, ".gitignore"), `.idea/
+  .vscode/
+  node_modules
+  build/
+  .DS_Store`);
 
   demoExclude[state].forEach(p => {
     execa.sync("rm", ["-r", path.join(appDir, p)]);
