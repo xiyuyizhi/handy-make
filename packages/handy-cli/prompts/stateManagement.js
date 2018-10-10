@@ -1,7 +1,7 @@
 module.exports = api => {
   api.addFeature({
     name: "state management",
-    value: "stateManagement"
+    value: "stateManage"
   });
 
   api.addChoicesBelowFeature({
@@ -9,7 +9,7 @@ module.exports = api => {
     name: "state",
     message: "select then state manage mode to user",
     when: answers => {
-      return answers.features && answers.features.includes("stateManagement");
+      return answers.features && answers.features.includes("stateManage");
     },
     choices: [
       {
