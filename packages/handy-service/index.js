@@ -1,7 +1,7 @@
 const execa = require("execa");
 const path = require("path");
 const fs = require("fs-extra");
-const symlink = require("handy-utils/symlink");
+const symlink = require("handy-utils-shared/symlink");
 const demoExclude = {
   normal: ["src/stores", "src/pages/mobx", "src/pages/redux", "src/modules/mobxGitSearch"],
   mobx: ["src/pages/index", "src/pages/redux", "src/modules/indexGitSearch"]

@@ -1,11 +1,5 @@
 {
-  "extends": [
-    "eslint:recommended",
-    "plugin:react/recommended",
-    "prettier",
-    "prettier/react"
-  ],
-  "plugins": ["react", "prettier"],
+  "extends": "airbnb",
   "parser": "babel-eslint",
   "parserOptions": {
     "ecmaVersion": 2017,
@@ -26,13 +20,18 @@
   },
   "rules": {
     "no-console": 0,
-    "quotes": [2, "double"],
+    "quotes": [
+      2,
+      "double"
+    ],
     "react/jsx-filename-extension": 0,
     "react/react-in-jsx-scope": 0,
     "react/prop-types": [
       2,
       {
-        "ignore": ["children"]
+        "ignore": [
+          "children"
+        ]
       }
     ],
     "react/sort-comp": [

@@ -6,7 +6,7 @@ const inquirer = require("inquirer");
 const { getModuleList } = require("../util/getModuleList");
 const Confirm = require("./Confirm.js");
 const Package = require("../util/package.js");
-const symlink = require("handy-utils/symlink");
+const symlink = require("handy-utils-shared/symlink");
 const DEV_DEBUG = process.env.NODE_ENV === "DEV" || process.env.NODE_ENV === "DEBUG";
 
 async function creator(appName) {

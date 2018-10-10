@@ -19,11 +19,12 @@
     "globby": "^8.0.1",
     "handy-cli-plugin-eslint": "^0.0.2",
     "handy-service": "^0.0.2",
-    "handy-utils": "^0.0.2",
+    "handy-utils-shared": "^0.0.2",
     "inquirer": "^6.0.0",
     "semver": "^5.5.0"
   },
   "engines": {
     "node": ">=8"
-  }
+  },
+  "gitHead": "41f5556f66e3ec9c717e67a56eae35e7902539ca"
 }

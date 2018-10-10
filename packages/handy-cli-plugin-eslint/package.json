@@ -3,5 +3,6 @@
   "version": "0.0.2",
   "dependencies": {
     "fs-extra": "^6.0.1"
-  }
+  },
+  "gitHead": "41f5556f66e3ec9c717e67a56eae35e7902539ca"
 }

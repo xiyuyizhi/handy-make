@@ -3,6 +3,8 @@
   "version": "0.0.1",
   "dependencies": {
     "handy-demo-common": "^0.0.1",
+    "mobx": "^5.5.0",
+    "mobx-react": "^5.2.8",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
     "react-router-dom": "^4.3.1",
@@ -16,11 +18,30 @@
     "build": "handy-service build"
   },
   "presets": {
-    "preset": "manual",
+    "preset": "default",
     "features": [
-      "eslint"
+      "eslint",
+      "stateManagement",
+      "unit"
     ],
-    "eslint": "prettier",
-    "eslintCondition": "save"
+    "eslint": "airbnb",
+    "eslintCondition": "commit",
+    "state": "mobx"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "linters": {
+      "*.{js,jsx}": [
+        "eslint --fix",
+        "git add"
+      ]
+    },
+    "ignore": [
+      "**/build/**.js"
+    ]
   }
 }
