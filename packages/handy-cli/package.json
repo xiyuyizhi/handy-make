@@ -1,6 +1,6 @@
 {
   "name": "handy-cli",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": " command line  interface for use handy to build your react app ",
   "main": "bin/handy.js",
   "bin": {
@@ -17,10 +17,10 @@
     "execa": "^1.0.0",
     "fs-extra": "^6.0.1",
     "globby": "^8.0.1",
-    "handy-cli-plugin-eslint": "^0.0.3",
-    "handy-service": "^0.0.3",
-    "handy-utils-shared": "^0.0.3",
-    "handy-demo-common": "^0.0.3",
+    "handy-cli-plugin-eslint": "^0.0.4",
+    "handy-demo-common": "^0.0.4",
+    "handy-service": "^0.0.4",
+    "handy-utils-shared": "^0.0.4",
     "inquirer": "^6.0.0",
     "semver": "^5.5.0"
   },

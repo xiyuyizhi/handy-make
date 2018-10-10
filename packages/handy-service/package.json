@@ -1,6 +1,6 @@
 {
   "name": "handy-service",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "",
   "bin": "bin/handy-service.js",
   "main": "index.js",
@@ -32,7 +32,7 @@
     "execa": "^1.0.0",
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
     "file-loader": "^2.0.0",
-    "handy-utils-shared": "^0.0.3",
+    "handy-utils-shared": "^0.0.4",
     "html-webpack-plugin": "^4.0.0-alpha.2",
     "husky": "^1.0.1",
     "less": "^3.8.1",
