@@ -2,14 +2,16 @@
   "name": "aaa",
   "version": "0.0.1",
   "dependencies": {
-    "handy-demo-common": "^0.0.3",
+    "handy-demo-common": "^0.0.4",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
     "react-router-dom": "^4.3.1",
-    "whatwg-fetch": "^3.0.0"
+    "whatwg-fetch": "^3.0.0",
+    "mobx": "^5.5.0",
+    "mobx-react": "^5.2.8"
   },
   "devDependencies": {
-    "handy-service": "^0.0.3",
+    "handy-service": "^0.0.4",
     "lint-staged": "^7.3.0",
     "husky": "^1.1.1",
     "eslint": "^5.6.0",
@@ -23,14 +25,14 @@
     "build": "handy-service build"
   },
   "presets": {
-    "preset": "manual",
+    "preset": "default",
     "features": [
       "eslint",
       "stateManagement"
     ],
     "eslint": "airbnb",
     "eslintCondition": "commit",
-    "state": "normal"
+    "state": "mobx"
   },
   "husky": {
     "hooks": {

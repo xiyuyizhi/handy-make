@@ -63,7 +63,7 @@ async function creator(appName) {
   });
 
   // install dependencies
-  console.log(chalk.green("install dependencies....."));
+  console.log(chalk.green("install dependencies..."));
   const appPackage = path.join(appDir, "package.json");
   let appPkg = fs.readJsonSync(appPackage);
   const { dependencies, devDependencies } = appPkg;
