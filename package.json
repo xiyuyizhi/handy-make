@@ -23,7 +23,7 @@
   "lint-staged": {
     "linters": {
       "*.js": [
-        "eslint --fix",
+        "eslint --fix --ignore-pattern demo/",
         "git add"
       ]
     },
