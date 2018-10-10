@@ -1,6 +1,5 @@
 #!/usr/bin/env node
 
-console.log(process.argv);
 const path = require("path");
 const execa = require("execa");
 

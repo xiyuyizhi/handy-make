@@ -20,7 +20,7 @@ function ensureSlash(inputPath, needsSlash) {
 
 const getPublicUrl = appPackageJson => envPublicUrl || require(appPackageJson).homepage;
 
-const getAppPackageJsonProp = (appPackageJson, prop)=>require(appPackageJson)[prop];
+const getAppPackageJsonProp = (appPackageJson, prop) => require(appPackageJson)[prop];
 
 function getServedPath(appPackageJson) {
   const publicUrl = getPublicUrl(appPackageJson);

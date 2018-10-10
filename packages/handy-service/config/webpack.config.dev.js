@@ -53,17 +53,16 @@ const getStyleLoaders = (cssOptions, preProcessor) => {
 const eslintWhenSave = {
   enforce: "pre",
   test: /\.(js|jsx)$/,
-  include: paths.srcPaths,
+  include: paths.appSrc,
   exclude: /node_modules/,
-  loader: "eslint-loader",
+  loader: require.resolve("eslint-loader"),
   options: {
     fix: true,
-    // cache: true,
     cwd: paths.appPath,
     configFile: ".eslintrc"
   }
 };
-console.log(multiPage.appEntries);
+
 const config = {
   mode: "development",
   devtool: "cheap-module-source-map",
@@ -124,14 +123,8 @@ const config = {
                 ]
               ],
               plugins: [
-                [
-                  require("@babel/plugin-proposal-decorators"),
-                  { legacy: true }
-                ],
-                [
-                  require("@babel/plugin-proposal-class-properties"),
-                  { loose: true }
-                ]
+                [require("@babel/plugin-proposal-decorators"), { legacy: true }],
+                [require("@babel/plugin-proposal-class-properties"), { loose: true }]
               ]
             }
           },
@@ -152,47 +145,29 @@ const config = {
           {
             test: sassRegex,
             exclude: sassModuleRegex,
-            use: getStyleLoaders(
-              { importLoaders: 2 },
-              "sass-loader"
-            )
+            use: getStyleLoaders({ importLoaders: 2 }, "sass-loader")
           },
           {
             test: sassModuleRegex,
-            use: getStyleLoaders(
-              { importLoaders: 2, modules: true },
-              "sass-loader"
-            )
+            use: getStyleLoaders({ importLoaders: 2, modules: true }, "sass-loader")
           },
           {
             test: lessRegex,
             exclude: lessModuleRegex,
-            use: getStyleLoaders(
-              { importLoaders: 2 },
-              "less-loader"
-            )
+            use: getStyleLoaders({ importLoaders: 2 }, "less-loader")
           },
           {
             test: lessModuleRegex,
-            use: getStyleLoaders(
-              { importLoaders: 2, modules: true },
-              "less-loader"
-            )
+            use: getStyleLoaders({ importLoaders: 2, modules: true }, "less-loader")
           },
           {
             test: stylusRegex,
             exclude: stylusModuleRegex,
-            use: getStyleLoaders(
-              { importLoaders: 2 },
-              "stylus-loader"
-            )
+            use: getStyleLoaders({ importLoaders: 2 }, "stylus-loader")
           },
           {
             test: stylusModuleRegex,
-            use: getStyleLoaders(
-              { importLoaders: 2, modules: true },
-              "stylus-loader"
-            )
+            use: getStyleLoaders({ importLoaders: 2, modules: true }, "stylus-loader")
           },
           {
             exclude: [/\.(js|jsx|mjs)$/, /\.html$/, /\.json$/],
