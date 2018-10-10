@@ -1,6 +1,6 @@
 {
   "name": "handy-demo-common",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "demo app common js、css",
   "module": "index.js",
   "main": "index.js",

@@ -1,6 +1,6 @@
 {
   "name": "handy-utils-shared",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "dependencies": {
     "cmd-shim": "^2.0.2",
     "fs-extra": "^6.0.1"

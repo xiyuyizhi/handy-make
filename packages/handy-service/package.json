@@ -1,6 +1,6 @@
 {
   "name": "handy-service",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "",
   "bin": "bin/handy-service.js",
   "main": "index.js",
@@ -32,7 +32,7 @@
     "execa": "^1.0.0",
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
     "file-loader": "^2.0.0",
-    "handy-utils-shared": "^0.0.2",
+    "handy-utils-shared": "^0.0.3",
     "html-webpack-plugin": "^4.0.0-alpha.2",
     "husky": "^1.0.1",
     "less": "^3.8.1",
@@ -56,7 +56,7 @@
     "webpack-manifest-plugin": "^2.0.4"
   },
   "devDependencies": {
-    "handy-demo-common": "^0.0.2"
+    "handy-demo-common": "^0.0.3"
   },
   "engines": {
     "node": ">=8"
