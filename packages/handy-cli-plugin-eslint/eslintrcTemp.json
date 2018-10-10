@@ -20,8 +20,13 @@
   "rules": {
     "no-console": 0,
     "quotes": [2, "double"],
+    "class-methods-use-this": 0,
+    "import/no-unresolved": 0,
+    "import/prefer-default-export": 0,
     "react/jsx-filename-extension": 0,
     "react/react-in-jsx-scope": 0,
+    "react/destructuring-assignment": 0,
+    "react/no-array-index-key": 0,
     "react/prop-types": [
       2,
       {
@@ -40,6 +45,7 @@
           "render"
         ]
       }
-    ]
+    ],
+    "react/forbid-prop-types": 0
   }
 }

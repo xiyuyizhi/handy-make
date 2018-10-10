@@ -1,19 +1,20 @@
 const fs = require("fs-extra");
 const path = require("path");
-const pluginsMap = {
+const pkgExtends = {
   airbnb: {
-    dependencies: {
+    devDependencies: {
       eslint: "^5.6.0",
       "eslint-config-airbnb": "^17.1.0",
       "eslint-plugin-import": "^2.14.0",
-      "eslint-plugin-jsx-a11y": "^6.1.1"
+      "eslint-plugin-jsx-a11y": "^6.1.1",
+      "eslint-plugin-react": "^7.11.1"
     },
     eslintrcExtend: {
       extends: "airbnb"
     }
   },
   prettier: {
-    dependencies: {
+    devDependencies: {
       eslint: "^5.6.0",
       prettier: "^1.14.3",
       "eslint-config-prettier": "^3.1.0",
@@ -43,24 +44,32 @@ const eslintWhenCommit = {
 
 function geneEslintrc(appDir, answer) {
   const { eslint } = answer;
-  let eslintrcTemp = require("./eslintrc.json");
-  eslintrcTemp = Object.assign(pluginsMap[eslint].eslintrcExtend, eslintrcTemp);
+  let eslintrcTemp = require("./eslintrcTemp.json");
+  eslintrcTemp = Object.assign(pkgExtends[eslint].eslintrcExtend, eslintrcTemp);
   fs.writeFileSync(path.join(appDir, ".eslintrc"), JSON.stringify(eslintrcTemp, null, 2));
 }
 
-function extendPkg(appDir) {
+function extendPkg(appDir, eslintType) {
   const appPackage = path.join(appDir, "package.json");
   let pkg = fs.readJsonSync(appPackage);
   pkg = Object.assign(pkg, eslintWhenCommit);
+  pkg.devDependencies = Object.assign(
+    pkg.devDependencies,
+    {
+      "lint-staged": "^7.3.0",
+      husky: "^1.1.1"
+    },
+    pkgExtends[eslintType].devDependencies
+  );
   fs.writeFileSync(appPackage, JSON.stringify(pkg, null, 2));
 }
 
 module.exports = (appDir, answer) => {
   if (answer.features.includes("eslint")) {
-    const { eslintCondition } = answer;
+    const { eslintCondition, eslint } = answer;
     geneEslintrc(appDir, answer);
     if (eslintCondition === "commit") {
-      extendPkg(appDir);
+      extendPkg(appDir, eslint);
     }
   }
 };

@@ -1,6 +1,4 @@
-import {
-  BrowserRouter as Router, Route, Switch, Link
-} from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import routes from "./routes";
 
@@ -18,7 +16,7 @@ ReactDOM.render(
       ))}
     </Switch>
   </Router>,
-  document.getElementById("root"),
+  document.getElementById("root")
 );
 
 if (module.hot) {

@@ -20,6 +20,7 @@
     "handy-cli-plugin-eslint": "^0.0.3",
     "handy-service": "^0.0.3",
     "handy-utils-shared": "^0.0.3",
+    "handy-demo-common": "^0.0.3",
     "inquirer": "^6.0.0",
     "semver": "^5.5.0"
   },

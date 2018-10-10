@@ -56,7 +56,7 @@ export default class SearchGit {
   }
 
   loadNextPage = () => {
-    this.page++;
+    this.page += 1;
   };
 
   getUserInput(value) {

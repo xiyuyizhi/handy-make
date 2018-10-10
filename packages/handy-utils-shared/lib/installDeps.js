@@ -7,15 +7,15 @@ const execa = require("execa");
  */
 module.exports = (deps, root) => {
   if (deps) {
-    const promises = deps.map(dep => {
-      return execa("npm", ["install", dep], {
+    deps.map(dep => {
+      return execa.sync("tnpm", ["install", dep], {
         cwd: root,
-        stdio: "pipe"
+        stdio: "inherit"
       });
     });
-    return Promise.all(promises);
+    return;
   }
-  execa.sync("npm", ["install"], {
+  execa.sync("tnpm", ["install"], {
     cwd: root,
     stdio: "inherit"
   });

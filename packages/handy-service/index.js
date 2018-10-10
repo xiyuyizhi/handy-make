@@ -1,8 +1,6 @@
 const execa = require("execa");
 const path = require("path");
 const fs = require("fs-extra");
-const chalk = require("chalk");
-const { symlink, getPkgVersion, installDeps } = require("handy-utils-shared");
 
 const demoExclude = {
   normal: ["src/stores", "src/pages/mobx", "src/pages/redux", "src/modules/mobxGitSearch"],
@@ -17,15 +15,14 @@ const pkgStateDependencies = {
   }
 };
 
-const DEV_DEBUG = process.env.NODE_ENV === "DEV" || process.env.NODE_ENV === "DEBUG";
-
 module.exports = async (appDir, answers) => {
   const { state = "normal" } = answers;
 
-  execa.sync("cp", ["-r", path.join(__dirname, "demo", "public"), appDir]);
-  execa.sync("cp", ["-r", path.join(__dirname, "demo", "src"), appDir]);
+  [".gitignore", "public", "src"].forEach(x => {
+    execa.sync("cp", ["-r", path.join(__dirname, "demo", x), appDir]);
+  });
 
-  demoExclude[state].forEach((p) => {
+  demoExclude[state].forEach(p => {
     execa.sync("rm", ["-r", path.join(appDir, p)]);
   });
 
@@ -33,40 +30,16 @@ module.exports = async (appDir, answers) => {
 
   const pkg = fs.readJsonSync(path.join(appDir, "package.json"));
 
-  const currentModuleVersion = getPkgVersion(path.join(__dirname, "package.json"));
-
   const appDeps = Object.assign(
     pkg.dependencies,
     {
       react: "^16.5.2",
       "react-dom": "^16.5.2",
       "react-router-dom": "^4.3.1",
-      "whatwg-fetch": "^3.0.0",
-      "handy-demo-common": `^${currentModuleVersion}`
+      "whatwg-fetch": "^3.0.0"
     },
-    pkgStateDependencies[state] || {},
+    pkgStateDependencies[state] || {}
   );
   pkg.dependencies = appDeps;
   fs.writeFileSync(path.join(appDir, "package.json"), JSON.stringify(pkg, null, 2));
-
-  // install deps
-  console.log(chalk.green("install dependencies....."));
-  if (DEV_DEBUG) {
-    const excludeDemoCommon = Object.keys(appDeps)
-      .map(key => `${key}@${appDeps[key]}`)
-      .filter(dep => dep.indexOf("handy-demo-common") === -1);
-    try {
-      await installDeps(excludeDemoCommon, appDir);
-      symlink(
-        path.join(__dirname, "../", "handy-demo-common"),
-        path.join(appDir, "node_modules", "handy-demo-common"),
-      );
-    } catch (x) {
-      console.log(chalk.red("install deps error"));
-      console.log(x);
-    }
-  } else {
-    installDeps(null, appDeps);
-  }
-  console.log(chalk.green("install deps success....."));
 };

@@ -1,11 +1,12 @@
 import { shake } from "utils";
+
 const { Fragment } = React;
 
 class Scroll extends React.Component {
   static displayName = "Scroll";
 
   static propTypes = {
-    loadNextPage: PropTypes.func.isRequired
+    loadNextPage: PropTypes.func.isRequired,
   };
 
   constructor(props) {

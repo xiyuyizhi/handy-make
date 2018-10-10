@@ -1,6 +1,6 @@
 const inquirer = require("inquirer");
 const defaultPreset = require("../util/defaultPreset");
-class Confirm {
+class Prompt {
   constructor(appName, promptsList) {
     this.appName = appName;
     this.confirmList = [];
@@ -23,11 +23,7 @@ class Confirm {
   }
 
   async confirm() {
-    this.confirmList = [
-      ...this.presets,
-      this.featureList,
-      ...this.promptBelowFeature
-    ];
+    this.confirmList = [...this.presets, this.featureList, ...this.promptBelowFeature];
     let answers = await inquirer.prompt(this.confirmList);
     if (answers.preset === "default") {
       answers = defaultPreset;
@@ -49,8 +45,7 @@ class Confirm {
         message: "请选择要包含的特性",
         choices: [
           {
-            name:
-                            "default(eslint,unit test,state-management:reactContextApi)",
+            name: "default(eslint,unit test,stateManage(normal))",
             value: "default"
           },
           {
@@ -79,4 +74,4 @@ class Confirm {
   }
 }
 
-module.exports = Confirm;
+module.exports = Prompt;

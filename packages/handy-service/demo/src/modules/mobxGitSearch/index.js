@@ -6,18 +6,16 @@ import ResultList from "./components/ResultList/ResultList";
 
 import "handy-demo-common/index.css";
 
-export default class MobxGitSearch extends React.Component {
-  render() {
-    const searchGitStore = new SearchGitStore();
-    return (
-      <div className="git_search_context">
-        <Provider gitStore={searchGitStore}>
-          <Scroll loadNextPage={searchGitStore.loadNextPage}>
-            <Search />
-            <ResultList />
-          </Scroll>
-        </Provider>
-      </div>
-    );
-  }
-}
+export default () => {
+  const searchGitStore = new SearchGitStore();
+  return (
+    <div className="git_search_context">
+      <Provider gitStore={searchGitStore}>
+        <Scroll loadNextPage={searchGitStore.loadNextPage}>
+          <Search />
+          <ResultList />
+        </Scroll>
+      </Provider>
+    </div>
+  );
+};
