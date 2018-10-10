@@ -1,6 +1,6 @@
 {
   "name": "handy-cli-plugin-eslint",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "dependencies": {
     "fs-extra": "^6.0.1"
   },
