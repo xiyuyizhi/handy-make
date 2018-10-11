@@ -1,6 +1,6 @@
 module.exports = {
   command: "create <app-name>",
-  description: "创建新项目",
+  description: "create new project",
   action: appName => {
     require("../lib/create")(appName);
   }

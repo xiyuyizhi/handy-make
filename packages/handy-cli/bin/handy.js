@@ -10,7 +10,7 @@ const { getModuleList } = require("../util/getModuleList");
 const commandDirPath = path.resolve(__dirname, "../", "command");
 
 if (!semver.satisfies(process.version, requireVersion)) {
-  console.log(chalk.red(`node版本过低!请升级到${requireVersion}`));
+  console.log(chalk.red(`node version is too low! please update to ${requireVersion} at latest`));
   process.exit(1);
 }
 

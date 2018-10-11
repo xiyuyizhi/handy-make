@@ -1,3 +1,4 @@
+module.exports = `
 export default class _compName_ extends React.Component {
   static displayName = "_displayName_";
 
@@ -15,3 +16,4 @@ export default class _compName_ extends React.Component {
     return <React.Fragment>new compoent</React.Fragment>;
   }
 }
+`;
