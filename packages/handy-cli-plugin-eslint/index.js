@@ -1,5 +1,7 @@
 const fs = require("fs-extra");
 const path = require("path");
+const { extendPkgJson } = require("handy-utils-shared");
+
 const pkgExtends = {
   airbnb: {
     devDependencies: {
@@ -50,18 +52,18 @@ function geneEslintrc(appDir, answer) {
 }
 
 function extendPkg(appDir, eslintType) {
-  const appPackage = path.join(appDir, "package.json");
-  let pkg = fs.readJsonSync(appPackage);
-  pkg = Object.assign(pkg, eslintWhenCommit);
-  pkg.devDependencies = Object.assign(
-    pkg.devDependencies,
-    {
-      "lint-staged": "^7.3.0",
-      husky: "^1.1.1"
-    },
-    pkgExtends[eslintType].devDependencies
-  );
-  fs.writeFileSync(appPackage, JSON.stringify(pkg, null, 2));
+  extendPkgJson(appDir)(pkg => {
+    pkg = Object.assign(pkg, eslintWhenCommit);
+    pkg.devDependencies = Object.assign(
+      pkg.devDependencies,
+      {
+        "lint-staged": "^7.3.0",
+        husky: "^1.1.1"
+      },
+      pkgExtends[eslintType].devDependencies
+    );
+    return pkg;
+  });
 }
 
 module.exports = (appDir, answer) => {

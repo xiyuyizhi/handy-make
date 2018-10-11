@@ -3,11 +3,14 @@ const fs = require("fs-extra");
 const chalk = require("chalk");
 const inquirer = require("inquirer");
 const execa = require("execa");
-const { symlink, getPkgVersion, installDeps } = require("handy-utils-shared");
+const {
+  symlink, getPkgVersion, installDeps, extendPkgJson
+} = require("handy-utils-shared");
 const { getModuleList } = require("../util/getModuleList");
 const Prompt = require("./Prompt.js");
 
 const DEV_DEBUG = process.env.NODE_ENV === "DEV" || process.env.NODE_ENV === "DEBUG";
+const DEV_TEST = process.env.NODE_ENV === "TEST";
 
 async function creator(appName) {
   const appDir = path.resolve(process.cwd(), appName);
@@ -61,26 +64,27 @@ async function creator(appName) {
   plugins.forEach(modu => {
     require(modu)(appDir, answers);
   });
+
   // install dependencies
   console.log(chalk.green("install dependencies..."));
-  const appPackage = path.join(appDir, "package.json");
-  let appPkg = fs.readJsonSync(appPackage);
-  const { dependencies, devDependencies } = appPkg;
   if (DEV_DEBUG) {
     try {
-      await installDeps(
-        Object.keys(dependencies)
-          .map(key => `${key}${dependencies[key]}`.replace("^", "@"))
-          .filter(dep => dep.indexOf("handy-demo-common") === -1),
-        appDir
-      );
-      await installDeps(
-        Object.keys(devDependencies)
-          .map(key => `${key}${devDependencies[key]}`.replace("^", "@"))
-          .filter(dep => dep.indexOf("handy-service") === -1),
-        appDir
-      );
-
+      if (DEV_TEST) {
+        let appPkg = extendPkgJson(appDir, true);
+        const { dependencies, devDependencies } = appPkg;
+        await installDeps(
+          Object.keys(dependencies)
+            .map(key => `${key}${dependencies[key]}`.replace("^", "@"))
+            .filter(dep => dep.indexOf("handy-demo-common") === -1),
+          appDir
+        );
+        await installDeps(
+          Object.keys(devDependencies)
+            .map(key => `${key}${devDependencies[key]}`.replace("^", "@"))
+            .filter(dep => dep.indexOf("handy-service") === -1),
+          appDir
+        );
+      }
       symlink(
         path.join(__dirname, "../../", "handy-demo-common"),
         path.join(appDir, "node_modules", "handy-demo-common")
