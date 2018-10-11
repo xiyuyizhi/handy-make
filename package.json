@@ -17,7 +17,8 @@
   "license": "ISC",
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged"
+      "pre-commit": "lint-staged",
+      "commit-msg": "node scripts/verifyCommitMsg.js"
     }
   },
   "lint-staged": {
