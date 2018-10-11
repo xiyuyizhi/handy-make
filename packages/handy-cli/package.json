@@ -9,7 +9,11 @@
   "scripts": {
     "dev": "node ./bin/handy"
   },
-  "author": "",
+  "author": "xiyuyizhi",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/xiyuyizhi/handy-make"
+  },
   "license": "ISC",
   "dependencies": {
     "chalk": "^2.4.1",

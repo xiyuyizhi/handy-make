@@ -7,5 +7,11 @@
     "execa": "^1.0.0",
     "fs-extra": "^6.0.1"
   },
+  "author": "xiyuyizhi",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/xiyuyizhi/handy-make"
+  },
+  "license": "ISC",
   "gitHead": "41f5556f66e3ec9c717e67a56eae35e7902539ca"
 }
