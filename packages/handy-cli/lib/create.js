@@ -106,6 +106,10 @@ async function creator(appName) {
   }
   console.log(chalk.green("install dependencies finish"));
 
+  // gene readme.md
+
+  fs.writeFileSync(path.resolve(appDir, "readme.md"), `## ${appName}`);
+
   console.log(
     chalk.yellow(`
       now,you can ${chalk.red(`cd ${appName}`)},\n
