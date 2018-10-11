@@ -10,7 +10,7 @@ const { getModuleList } = require("../util/getModuleList");
 const Prompt = require("./Prompt.js");
 
 const DEV_DEBUG = process.env.NODE_ENV === "DEV" || process.env.NODE_ENV === "DEBUG";
-const DEV_TEST = process.env.NODE_ENV === "TEST";
+const DEV_INSTALL = process.env.TEST_INSTALL === "true";
 
 async function creator(appName) {
   const appDir = path.resolve(process.cwd(), appName);
@@ -67,9 +67,10 @@ async function creator(appName) {
 
   // install dependencies
   console.log(chalk.green("install dependencies..."));
+
   if (DEV_DEBUG) {
     try {
-      if (DEV_TEST) {
+      if (DEV_INSTALL) {
         let appPkg = extendPkgJson(appDir, true);
         const { dependencies, devDependencies } = appPkg;
         await installDeps(
@@ -85,6 +86,7 @@ async function creator(appName) {
           appDir
         );
       }
+
       symlink(
         path.join(__dirname, "../../", "handy-demo-common"),
         path.join(appDir, "node_modules", "handy-demo-common")

@@ -1,7 +1,7 @@
 const execa = require("execa");
 const path = require("path");
 const fs = require("fs-extra");
-const {extendPkgJson} = require('handy-utils-shared')
+const { extendPkgJson } = require("handy-utils-shared");
 const demoExclude = {
   normal: ["src/stores", "src/pages/mobx", "src/pages/redux", "src/modules/mobxGitSearch"],
   mobx: ["src/pages/normal", "src/pages/redux", "src/modules/normalGitSearch"]
@@ -22,11 +22,9 @@ module.exports = async (appDir, answers) => {
     execa.sync("cp", ["-r", path.join(__dirname, "demo", x), appDir]);
   });
 
-  fs.writeFileSync(path.join(appDir, ".gitignore"), `.idea/
-  .vscode/
-  node_modules
-  build/
-  .DS_Store`);
+  const ignoreContent = "idea/\n.vscode/\nnode_modules\nbuild/\n.DS_Store";
+
+  fs.writeFileSync(path.join(appDir, ".gitignore"), ignoreContent);
 
   demoExclude[state].forEach(p => {
     execa.sync("rm", ["-r", path.join(appDir, p)]);
@@ -34,7 +32,7 @@ module.exports = async (appDir, answers) => {
 
   execa.sync("mv", [path.join(appDir, "src/pages", state), path.join(appDir, "/src/pages/index")]);
 
-  extendPkgJson(appDir)(pkg=>{
+  extendPkgJson(appDir)(pkg => {
     const appDeps = Object.assign(
       pkg.dependencies,
       {
@@ -46,7 +44,6 @@ module.exports = async (appDir, answers) => {
       pkgStateDependencies[state] || {}
     );
     pkg.dependencies = appDeps;
-    return pkg
-  })
-
+    return pkg;
+  });
 };
