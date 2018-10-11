@@ -4,7 +4,7 @@ const msg = require("fs")
   .readFileSync(msgPath, "utf-8")
   .trim();
 
-const commitRE = /^\((feat|fix|style|refactor)\)(\(.+\))?: .{1,50}/;
+const commitRE = /^\((feat|fix|style|refactor|release)\)(\(.+\))?: .{1,50}/;
 
 if (!commitRE.test(msg)) {
   console.log();
