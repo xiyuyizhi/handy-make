@@ -28,7 +28,7 @@
   "lint-staged": {
     "linters": {
       "*.js": [
-        "eslint --fix --ignore-pattern demo/",
+        "eslint --fix --ignore-pattern handy-demo-app/",
         "git add"
       ]
     },
