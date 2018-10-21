@@ -6,12 +6,12 @@ export default [
     exact: true,
     component: MobxGitSearch,
   },
-  // @remove-before-createApp
+  //@remove-before-createApp
   {
     path: "/mobx",
     exact: true,
     component: MobxGitSearch,
   },
-  // @remove-end-createApp
+  //@remove-end-createApp
 
 ];
