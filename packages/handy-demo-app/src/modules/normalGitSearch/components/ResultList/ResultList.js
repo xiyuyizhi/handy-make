@@ -1,7 +1,6 @@
 import ResultItem from "components/ResultItem/ResultItem";
 
-
-export default ({ list, fetchFinish }) => (
+const ResultList = ({ list, fetchFinish }) => (
   <ul className="git_search_list">
     {list.length === 0 && fetchFinish ? (
       <div className="git_search_noData">no search</div>
@@ -10,3 +9,10 @@ export default ({ list, fetchFinish }) => (
     )}
   </ul>
 );
+
+ResultList.propTypes = {
+  list: PropTypes.array.isRequired,
+  fetchFinish: PropTypes.bool.isRequired,
+};
+
+export default ResultList;

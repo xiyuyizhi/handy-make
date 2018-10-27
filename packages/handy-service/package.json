@@ -19,6 +19,7 @@
     "@babel/plugin-proposal-decorators": "^7.1.2",
     "@babel/preset-env": "^7.1.0",
     "@babel/preset-react": "^7.0.0",
+    "@babel/preset-typescript": "^7.1.0",
     "autoprefixer": "^9.1.5",
     "babel-eslint": "^10.0.1",
     "babel-loader": "^8.0.2",
@@ -36,6 +37,7 @@
     "execa": "^1.0.0",
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
     "file-loader": "^2.0.0",
+    "handy-demo-app": "^0.0.8",
     "handy-utils-shared": "^0.0.8",
     "html-webpack-plugin": "^4.0.0-alpha.2",
     "less": "^3.8.1",
@@ -55,8 +57,7 @@
     "url-loader": "^1.1.1",
     "webpack": "^4.20.2",
     "webpack-dev-server": "^3.1.9",
-    "webpack-manifest-plugin": "^2.0.4",
-    "handy-demo-app": "^0.0.8"
+    "webpack-manifest-plugin": "^2.0.4"
   },
   "engines": {
     "node": ">=8"

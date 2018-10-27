@@ -42,7 +42,7 @@ class Prompt {
       {
         type: "list",
         name: "preset",
-        message: "select then features include in you app",
+        message: "select the features include in you app",
         choices: [
           {
             name: "default(eslint,stateManage(normal))",
