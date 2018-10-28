@@ -8,17 +8,20 @@ console.log(x);
 
 ReactDOM.render(
   <Router>
-    <Switch>
-      {routes.map((route, index) => (
-        <Route
-          key={index}
-          exact={route.exact}
-          strict={route.strict}
-          path={route.path}
-          component={route.component}
-        />
-      ))}
-    </Switch>
+    <React.Fragment>
+      <Hello />
+      <Switch>
+        {routes.map((route, index) => (
+          <Route
+            key={index}
+            exact={route.exact}
+            strict={route.strict}
+            path={route.path}
+            component={route.component}
+          />
+        ))}
+      </Switch>
+    </React.Fragment>
   </Router>,
   document.getElementById("root")
 );

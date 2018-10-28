@@ -59,7 +59,6 @@ module.exports = async (appDir, answers) => {
   fs.writeFileSync(path.join(appDir, ".gitignore"), ignoreContent);
 
   const used = useTypescript ? `ts_${state}` : state;
-  console.log(used);
   demoExclude[used].forEach(p => {
     execa.sync("rm", ["-r", path.join(appDir, p)]);
   });

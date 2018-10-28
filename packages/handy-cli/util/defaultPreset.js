@@ -1,7 +1,7 @@
 module.exports = {
   preset: "default",
-  features: ["eslint", "stateManage"],
-  eslint: "airbnb",
-  eslintCondition: "commit",
+  features: ["linter", "stateManage"],
+  linter: "eslint_airbnb",
+  lintCondition: "commit",
   state: "mobx"
 };

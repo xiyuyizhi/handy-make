@@ -225,6 +225,4 @@ if (!presets) {
   require(plugin)(config, presets, paths, "DEV");
 });
 
-console.log(config.module.rules);
-// process.exit(1);
 module.exports = config;
