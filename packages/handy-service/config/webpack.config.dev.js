@@ -50,19 +50,6 @@ const getStyleLoaders = (cssOptions, preProcessor) => {
   return loaders;
 };
 
-const eslintWhenSave = {
-  enforce: "pre",
-  test: /\.(js|jsx)$/,
-  include: paths.appSrc,
-  exclude: /node_modules/,
-  loader: require.resolve("eslint-loader"),
-  options: {
-    fix: true,
-    cwd: paths.appPath,
-    configFile: ".eslintrc"
-  }
-};
-
 const config = {
   mode: "development",
   devtool: "cheap-module-source-map",
@@ -94,6 +81,11 @@ const config = {
     strictExportPresence: true,
     rules: [
       {
+        enforce: "pre",
+        test: /\.js$/,
+        loader: require.resolve("source-map-loader")
+      },
+      {
         oneOf: [
           {
             test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/],
@@ -123,8 +115,14 @@ const config = {
                 ]
               ],
               plugins: [
-                [require("@babel/plugin-proposal-decorators"), { legacy: true }],
-                [require("@babel/plugin-proposal-class-properties"), { loose: true }]
+                [
+                  require("@babel/plugin-proposal-decorators"),
+                  { legacy: true }
+                ],
+                [
+                  require("@babel/plugin-proposal-class-properties"),
+                  { loose: true }
+                ]
               ]
             }
           },
@@ -149,7 +147,10 @@ const config = {
           },
           {
             test: sassModuleRegex,
-            use: getStyleLoaders({ importLoaders: 2, modules: true }, "sass-loader")
+            use: getStyleLoaders(
+              { importLoaders: 2, modules: true },
+              "sass-loader"
+            )
           },
           {
             test: lessRegex,
@@ -158,7 +159,10 @@ const config = {
           },
           {
             test: lessModuleRegex,
-            use: getStyleLoaders({ importLoaders: 2, modules: true }, "less-loader")
+            use: getStyleLoaders(
+              { importLoaders: 2, modules: true },
+              "less-loader"
+            )
           },
           {
             test: stylusRegex,
@@ -167,7 +171,10 @@ const config = {
           },
           {
             test: stylusModuleRegex,
-            use: getStyleLoaders({ importLoaders: 2, modules: true }, "stylus-loader")
+            use: getStyleLoaders(
+              { importLoaders: 2, modules: true },
+              "stylus-loader"
+            )
           },
           {
             exclude: [/\.(js|jsx|mjs)$/, /\.html$/, /\.json$/],
@@ -211,9 +218,13 @@ if (!presets) {
   process.exit(1);
 }
 
-if (presets.eslintCondition && presets.eslintCondition === "save") {
-  // eslint when save
-  config.module.rules.unshift(eslintWhenSave);
-}
+[
+  "handy-cli-plugin-typescript/extendWebpack",
+  "handy-cli-plugin-linter/extendWebpack"
+].forEach(plugin => {
+  require(plugin)(config, presets, paths, "DEV");
+});
 
+console.log(config.module.rules);
+// process.exit(1);
 module.exports = config;

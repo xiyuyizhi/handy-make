@@ -8,8 +8,13 @@ const DEV_DEBUG = process.env.NODE_ENV === "DEV" || process.env.NODE_ENV === "DE
  * @param {string} root  安装的根目录
  */
 module.exports = (deps, root) => {
-  const pckManager = DEV_DEBUG ? "tnpm" : "npm";
-
+  let pckManager = "npm";
+  try {
+    if (DEV_DEBUG) {
+      execa.sync("tnpm", ["-v"]);
+      pckManager = "tnpm";
+    }
+  } catch (x) {}
   if (deps) {
     deps.map(dep => {
       return execa.sync(pckManager, ["install", dep], {

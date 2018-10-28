@@ -13,9 +13,12 @@ ReactDOM.render(
       <li>
         <a href="/mobx">mobx</a>
       </li>
+      <li>
+        <a href="/ts_mobx">ts_mobx</a>
+      </li>
     </ul>
   </Fragment>,
-  document.getElementById("root"),
+  document.getElementById("root")
 );
 
 if (module.hot) {

@@ -1,31 +1,32 @@
 module.exports = api => {
   api.addFeature({
-    name: "eslint",
-    value: "eslint"
+    name: "linter",
+    value: "linter"
   });
 
   api.addChoicesBelowFeature({
     type: "list",
-    name: "eslint",
-    message: "eslint type",
-    when: answers => answers.features && answers.features.includes("eslint"),
+    name: "linter",
+    message: "linter type",
+    when: answers => answers.features && answers.features.includes("linter") && !answers.features.includes("typescript"),
     choices: [
       {
         name: "eslint with prettier",
-        value: "prettier"
+        value: "eslint_prettier"
       },
       {
         name: "eslint with airbnb",
-        value: "airbnb"
+        value: "eslint_airbnb"
       }
     ]
   });
 
+
   api.addChoicesBelowFeature({
     type: "list",
-    name: "eslintCondition",
+    name: "lintCondition",
     message: "lint condition",
-    when: answers => answers.features && answers.features.includes("eslint"),
+    when: answers => answers.features && answers.features.includes("linter"),
     choices: [
       {
         name: "lint when save code",
@@ -39,8 +40,8 @@ module.exports = api => {
   });
 
   api.addPluginsCallback(answers => {
-    if (answers.features.includes("eslint")) {
-      api.plugins.push("handy-cli-plugin-eslint");
+    if (answers.features.includes("linter")) {
+      api.plugins.push("handy-cli-plugin-linter");
     }
   });
 };

@@ -21,7 +21,7 @@
     "execa": "^1.0.0",
     "fs-extra": "^6.0.1",
     "globby": "^8.0.1",
-    "handy-cli-plugin-eslint": "^0.0.8",
+    "handy-cli-plugin-linter": "^0.0.8",
     "handy-demo-common": "^0.0.8",
     "handy-service": "^0.0.8",
     "handy-utils-shared": "^0.0.8",

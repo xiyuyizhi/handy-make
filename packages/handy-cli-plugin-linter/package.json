@@ -1,5 +1,5 @@
 {
-  "name": "handy-cli-plugin-eslint",
+  "name": "handy-cli-plugin-linter",
   "version": "0.0.8",
   "dependencies": {
     "fs-extra": "^6.0.1",

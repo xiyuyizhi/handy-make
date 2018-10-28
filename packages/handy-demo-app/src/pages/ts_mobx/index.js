@@ -1,5 +1,10 @@
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import routes from "./routes";
+import { printColor, x } from "./test";
+import Hello from "./Hello";
+
+console.log(printColor());
+console.log(x);
 
 ReactDOM.render(
   <Router>
