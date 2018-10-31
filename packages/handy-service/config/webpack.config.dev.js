@@ -115,14 +115,8 @@ const config = {
                 ]
               ],
               plugins: [
-                [
-                  require("@babel/plugin-proposal-decorators"),
-                  { legacy: true }
-                ],
-                [
-                  require("@babel/plugin-proposal-class-properties"),
-                  { loose: true }
-                ]
+                [require("@babel/plugin-proposal-decorators"), { legacy: true }],
+                [require("@babel/plugin-proposal-class-properties"), { loose: true }]
               ]
             }
           },
@@ -147,10 +141,7 @@ const config = {
           },
           {
             test: sassModuleRegex,
-            use: getStyleLoaders(
-              { importLoaders: 2, modules: true },
-              "sass-loader"
-            )
+            use: getStyleLoaders({ importLoaders: 2, modules: true }, "sass-loader")
           },
           {
             test: lessRegex,
@@ -159,10 +150,7 @@ const config = {
           },
           {
             test: lessModuleRegex,
-            use: getStyleLoaders(
-              { importLoaders: 2, modules: true },
-              "less-loader"
-            )
+            use: getStyleLoaders({ importLoaders: 2, modules: true }, "less-loader")
           },
           {
             test: stylusRegex,
@@ -171,10 +159,7 @@ const config = {
           },
           {
             test: stylusModuleRegex,
-            use: getStyleLoaders(
-              { importLoaders: 2, modules: true },
-              "stylus-loader"
-            )
+            use: getStyleLoaders({ importLoaders: 2, modules: true }, "stylus-loader")
           },
           {
             exclude: [/\.(js|jsx|mjs)$/, /\.html$/, /\.json$/],
@@ -218,10 +203,18 @@ if (!presets) {
   process.exit(1);
 }
 
-[
+let extendWebpackPlugins;
+
+extendWebpackPlugins = ["./ts_extendWebpack", "./linter_extendWebpack"];
+
+// @remove-before-eject
+extendWebpackPlugins = [
   "handy-cli-plugin-typescript/extendWebpack",
   "handy-cli-plugin-linter/extendWebpack"
-].forEach(plugin => {
+];
+// @remove-end-eject
+
+extendWebpackPlugins.forEach(plugin => {
   require(plugin)(config, presets, paths, "DEV");
 });
 

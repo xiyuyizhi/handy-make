@@ -1,4 +1,5 @@
 const inquirer = require("inquirer");
+const fs = require("fs-extra");
 const execa = require("execa");
 const chalk = require("chalk");
 const path = require("path");
@@ -43,12 +44,39 @@ module.exports = async () => {
     execa.sync("cp", ["-r", path.join(handyServiceRoot, dir), appRoot]);
   });
 
-  const { dependencies } = extendPkgJson(handyServiceRoot, true);
+  // copy  extendWebpack file to appRoot/config
+  const extendsPlugins = {
+    "handy-cli-plugin-linter": "linter_extendWebpack.js",
+    "handy-cli-plugin-typescript": "ts_extendWebpack.js"
+  };
+  Object.keys(extendsPlugins).forEach(dep => {
+    const content = fs.readFileSync(
+      path.join(handyServiceRoot, "node_modules", dep, "extendWebpack.js")
+    );
+    fs.writeFileSync(path.join(appRoot, "config", extendsPlugins[dep]), content);
+  });
+
+  // remove not used content in webpack.config.dev.js、webpack.config.prod.js
+  ["webpack.config.dev.js", "webpack.config.prod.js"].forEach(file => {
+    const configPath = path.join(appRoot, "config", file);
+    let content = fs.readFileSync(configPath, { encoding: "utf8" });
+    content = content.replace(/\/\/\s+@remove-before-eject[^@]+@remove-end-eject/g, "");
+    fs.writeFileSync(configPath, content, { encoding: "utf8" });
+  });
 
   // extends project package.json
+  const { dependencies } = extendPkgJson(handyServiceRoot, true);
   extendPkgJson(appRoot)(pkg => {
-    pkg.devDependencies = Object.assign(pkg.devDependencies, dependencies);
-    delete pkg.devDependencies["handy-service"];
+    pkg.devDependencies = Object.assign({}, pkg.devDependencies, dependencies);
+
+    [
+      "handy-service",
+      "handy-demo-app",
+      "handy-utils-shared",
+      "handy-cli-plugin-typescript",
+      "handy-cli-plugin-linter"
+    ].forEach(x => delete pkg.devDependencies[x]);
+
     pkg.scripts = Object.assign(pkg.scripts, {
       start: "node scripts/serve",
       build: "node scripts/build"

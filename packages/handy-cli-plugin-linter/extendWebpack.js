@@ -1,7 +1,8 @@
-module.exports = (config, presets, paths) => {
+module.exports = (config, presets, paths, env) => {
   if (
     presets.linter.indexOf("eslint") !== -1
     && presets.lintCondition === "save"
+    && env === "DEV"
   ) {
     // eslint when save
     config.module.rules.unshift({

@@ -1,4 +1,5 @@
 const path = require("path");
+const chalk = require("chalk");
 const autoprefixer = require("autoprefixer");
 const webpack = require("webpack");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
@@ -154,14 +155,8 @@ const config = {
               ],
               compact: true,
               plugins: [
-                [
-                  require("@babel/plugin-proposal-decorators"),
-                  { legacy: true }
-                ],
-                [
-                  require("@babel/plugin-proposal-class-properties"),
-                  { loose: true }
-                ]
+                [require("@babel/plugin-proposal-decorators"), { legacy: true }],
+                [require("@babel/plugin-proposal-class-properties"), { loose: true }]
               ]
             }
           },
@@ -268,7 +263,7 @@ const config = {
     }),
     new MiniCssExtractPlugin({
       filename: cssFilename,
-      chunkFilename: "[id].css"
+      chunkFilename: "[name].[hash].css"
     }),
     new ManifestPlugin({
       fileName: "asset-manifest.json",
@@ -286,4 +281,27 @@ const config = {
 };
 
 config.plugins = [...multiPage.htmlWebpackPlugins, ...config.plugins];
+
+const presets = paths.appPresets;
+
+if (!presets) {
+  console.log(chalk.red("package.json not includes presets field"));
+  process.exit(1);
+}
+
+let extendWebpackPlugins;
+
+extendWebpackPlugins = ["./ts_extendWebpack", "./linter_extendWebpack"];
+
+// @remove-before-eject
+extendWebpackPlugins = [
+  "handy-cli-plugin-typescript/extendWebpack",
+  "handy-cli-plugin-linter/extendWebpack"
+];
+// @remove-end-eject
+
+extendWebpackPlugins.forEach(plugin => {
+  require(plugin)(config, presets, paths, "PRODUCTION");
+});
+
 module.exports = config;
