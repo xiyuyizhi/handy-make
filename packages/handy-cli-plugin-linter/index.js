@@ -31,12 +31,7 @@ const pkgExtends = {
       "eslint-plugin-react": "^7.11.1"
     },
     eslintrcExtend: {
-      extends: [
-        "eslint:recommended",
-        "plugin:react/recommended",
-        "prettier",
-        "prettier/react"
-      ],
+      extends: ["eslint:recommended", "plugin:react/recommended", "prettier", "prettier/react"],
       plugins: ["react", "prettier"]
     }
   }
@@ -68,26 +63,12 @@ function geneEslintrc(appDir, answer) {
   const { linter } = answer;
   let eslintrcTemp = require("./config/eslintrcTemp.json");
   eslintrcTemp = Object.assign(pkgExtends[linter].eslintrcExtend, eslintrcTemp);
-  fs.writeFileSync(
-    path.join(appDir, ".eslintrc"),
-    JSON.stringify(eslintrcTemp, null, 2)
-  );
+  fs.writeFileSync(path.join(appDir, ".eslintrc"), JSON.stringify(eslintrcTemp, null, 2));
 }
 
 function geneTslintJson(appDir) {
   let tslintJson = require("./config/tslintTemp.json");
-  fs.writeFileSync(
-    path.join(appDir, "tslint.json"),
-    JSON.stringify(tslintJson, null, 2)
-  );
-}
-
-function geneTsConfigJson(appDir) {
-  let tslintJson = require("./config/tsconfig.json");
-  fs.writeFileSync(
-    path.join(appDir, "tsconfig.json"),
-    JSON.stringify(tslintJson, null, 2)
-  );
+  fs.writeFileSync(path.join(appDir, "tslint.json"), JSON.stringify(tslintJson, null, 2));
 }
 
 function extendPkg(appDir, lintType) {
@@ -106,17 +87,14 @@ function extendPkg(appDir, lintType) {
 }
 
 module.exports = (appDir, answer) => {
-  if (answer.features.includes("linter")) {
-    const { lintCondition, linter } = answer;
-    if (answer.linter.indexOf("eslint") !== -1) {
-      geneEslintrc(appDir, answer);
-    }
-    if (answer.linter === "tslint") {
-      geneTslintJson(appDir);
-      geneTsConfigJson(appDir);
-    }
-    if (lintCondition === "commit") {
-      extendPkg(appDir, linter);
-    }
+  const { lintCondition, linter } = answer;
+  if (answer.linter.indexOf("eslint") !== -1) {
+    geneEslintrc(appDir, answer);
+  }
+  if (answer.linter === "tslint") {
+    geneTslintJson(appDir);
+  }
+  if (lintCondition === "commit") {
+    extendPkg(appDir, linter);
   }
 };

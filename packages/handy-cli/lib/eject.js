@@ -34,9 +34,9 @@ module.exports = async () => {
     process.exit(1);
   }
 
-  // copy necessary files
-
   console.log("eject...");
+
+  // copy necessary files
   const handyServiceRoot = path.resolve(__dirname, "../", "node_modules", "handy-service");
   const appRoot = process.cwd();
 
