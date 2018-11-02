@@ -15,5 +15,6 @@ export default [
     exact: true,
     component: MobxGitSearch
     // strict: false
-  }
+  },
+
 ] as IRouteDescription[];

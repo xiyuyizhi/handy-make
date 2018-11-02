@@ -1,6 +1,6 @@
-module.exports = api => {
-  api.addFeature({
-    name: "unit test",
-    value: "unit"
-  });
+module.exports = () => {
+  // api.addFeature({
+  //   name: "unit test",
+  //   value: "unit"
+  // });
 };

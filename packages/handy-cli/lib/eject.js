@@ -72,6 +72,7 @@ module.exports = async () => {
     [
       "handy-service",
       "handy-demo-app",
+      "handy-demo-app-ts",
       "handy-utils-shared",
       "handy-cli-plugin-typescript",
       "handy-cli-plugin-linter"
