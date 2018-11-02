@@ -13,15 +13,7 @@ export default [
   {
     path: "/",
     exact: true,
-    component: MobxGitSearch,
-    strict: false
-  },
-  // @remove-before-createApp
-  {
-    path: "/mobx",
-    exact: true,
-    component: MobxGitSearch,
-    strict: false
+    component: MobxGitSearch
+    // strict: false
   }
-  // @remove-end-createApp
-];
+] as IRouteDescription[];

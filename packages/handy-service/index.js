@@ -5,14 +5,8 @@ const { extendPkgJson } = require("handy-utils-shared");
 const demoAppPath = path.join(__dirname, "node_modules", "handy-demo-app");
 const demoAppTsPath = path.join(__dirname, "node_modules", "handy-demo-app-ts");
 const demoExclude = {
-  normal: [
-    "src/stores",
-    "src/pages/index",
-    "src/pages/mobx",
-    "src/pages/ts_mobx",
-    "src/modules/mobxGitSearch"
-  ],
-  mobx: ["src/pages/index", "src/pages/normal", "src/pages/ts_mobx", "src/modules/normalGitSearch"]
+  normal: ["src/stores", "src/pages/index", "src/pages/mobx", "src/modules/mobxGitSearch"],
+  mobx: ["src/pages/index", "src/pages/normal", "src/modules/normalGitSearch"]
 };
 
 // state management  deps
@@ -48,10 +42,14 @@ module.exports = async (appDir, answers) => {
   execa.sync("mv", [path.join(appDir, "src/pages", used), path.join(appDir, "/src/pages/index")]);
 
   // remove not required  route
-  const routePath = path.join(appDir, "/src/pages/index", "routes.js");
+  const routePath = path.join(
+    appDir,
+    "/src/pages/index",
+    useTypescript ? "routes.ts" : "routes.js"
+  );
   let routeContent = fs.readFileSync(routePath, { encoding: "utf8" });
   routeContent = routeContent.replace(
-    /\/\/@remove-before-createApp[^@]+\/\/@remove-end-createApp/g,
+    /\/\/\s+@remove-before-createApp[^@]+@remove-end-createApp/g,
     ""
   );
   fs.writeFileSync(routePath, routeContent);
