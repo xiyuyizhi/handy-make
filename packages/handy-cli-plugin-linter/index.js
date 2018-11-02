@@ -1,6 +1,4 @@
-const fs = require("fs-extra");
-const path = require("path");
-const { extendPkgJson } = require("handy-utils-shared");
+const { extendPkgJson, writeJsonToRoot } = require("handy-utils-shared");
 
 const pkgExtends = {
   tslint: {
@@ -63,12 +61,12 @@ function geneEslintrc(appDir, answer) {
   const { linter } = answer;
   let eslintrcTemp = require("./config/eslintrcTemp.json");
   eslintrcTemp = Object.assign(pkgExtends[linter].eslintrcExtend, eslintrcTemp);
-  fs.writeFileSync(path.join(appDir, ".eslintrc"), JSON.stringify(eslintrcTemp, null, 2));
+  writeJsonToRoot(appDir, ".eslintrc", eslintrcTemp);
 }
 
 function geneTslintJson(appDir) {
   let tslintJson = require("./config/tslintTemp.json");
-  fs.writeFileSync(path.join(appDir, "tslint.json"), JSON.stringify(tslintJson, null, 2));
+  writeJsonToRoot(appDir, "tslint.json", tslintJson);
 }
 
 function extendPkg(appDir, lintType) {

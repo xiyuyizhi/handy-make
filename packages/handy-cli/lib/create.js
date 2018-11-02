@@ -4,7 +4,11 @@ const chalk = require("chalk");
 const inquirer = require("inquirer");
 const execa = require("execa");
 const {
-  symlink, getPkgVersion, installDeps, extendPkgJson
+  symlink,
+  getPkgVersion,
+  installDeps,
+  extendPkgJson,
+  writeJsonToRoot
 } = require("handy-utils-shared");
 const { getModuleList } = require("../util/getModuleList");
 const Prompt = require("./Prompt.js");
@@ -29,14 +33,12 @@ async function creator(appName) {
       process.exit(1);
     }
   }
-
   fs.mkdirSync(appDir);
 
   const prompt = new Prompt(appName, getModuleList(path.resolve(__dirname, "../", "prompts")));
   const { answers, plugins } = await prompt.confirm();
 
   const cliVersion = getPkgVersion(path.join(__dirname, "../", "package.json"));
-
   const pkg = {
     name: appName,
     version: "0.0.1",
@@ -53,17 +55,17 @@ async function creator(appName) {
   };
   pkg.presets = answers;
 
-  fs.writeFileSync(path.resolve(appDir, "package.json"), JSON.stringify(pkg, null, 2));
+  writeJsonToRoot(appDir, "package.json", pkg);
 
-  console.log(chalk.green("git init..."));
   execa.sync("git", ["init"], {
     cwd: appDir
   });
+  console.log(chalk.green("git init success"));
 
-  console.log(chalk.green("generate project structure..."));
   plugins.forEach(modu => {
     require(modu)(appDir, answers);
   });
+  console.log(chalk.green("generate project skeleton success"));
 
   // install dependencies
   console.log(chalk.green("install dependencies..."));
@@ -104,17 +106,17 @@ async function creator(appName) {
   } else {
     installDeps(null, appDir);
   }
-  console.log(chalk.green("install dependencies finish"));
+  console.log(chalk.green("install dependencies success"));
 
   // gene readme.md
-
   fs.writeFileSync(path.resolve(appDir, "readme.md"), `## ${appName}`);
 
   console.log(
     chalk.yellow(`
       now,you can ${chalk.red(`cd ${appName}`)},\n
       run ${chalk.red("npm run start")} to start server, \n
-      and ${chalk.red("npm run build")} to build you app
+      and ${chalk.red("npm run build")} to build you app,\n
+      if you want modify webpack config indeed,you can  ${chalk.red("handy eject")}
   `)
   );
 }

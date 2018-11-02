@@ -1,6 +1,4 @@
-import { strict } from "assert";
 import MobxGitSearch from "modules/mobxGitSearch";
-import { exact } from "prop-types";
 
 interface IRouteDescription {
   path: string;

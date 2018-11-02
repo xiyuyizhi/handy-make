@@ -17,11 +17,7 @@ module.exports = (config, presets, paths, env) => {
     });
   }
 
-  if (
-    presets.linter === "tslint"
-    && presets.lintCondition === "save"
-    && env === "DEV"
-  ) {
+  if (presets.linter === "tslint" && presets.lintCondition === "save" && env === "DEV") {
     config.module.rules.unshift({
       test: /\.(ts|tsx)$/,
       enforce: "pre",
@@ -30,7 +26,6 @@ module.exports = (config, presets, paths, env) => {
           loader: require.resolve("tslint-loader"),
           options: {
             emitErrors: true,
-            typeCheck: true,
             fix: true
           }
         }

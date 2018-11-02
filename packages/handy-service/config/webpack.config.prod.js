@@ -291,7 +291,7 @@ if (!presets) {
 
 let extendWebpackPlugins;
 
-extendWebpackPlugins = ["./ts_extendWebpack", "./linter_extendWebpack"];
+extendWebpackPlugins = ["./extends/tsExtendWebpack", "./extends/linterExtendWebpack"];
 
 // @remove-before-eject
 extendWebpackPlugins = [

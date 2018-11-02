@@ -44,16 +44,18 @@ module.exports = async () => {
     execa.sync("cp", ["-r", path.join(handyServiceRoot, dir), appRoot]);
   });
 
-  // copy  extendWebpack file to appRoot/config
+  // copy  extendWebpack file to appRoot/config folder
   const extendsPlugins = {
-    "handy-cli-plugin-linter": "linter_extendWebpack.js",
-    "handy-cli-plugin-typescript": "ts_extendWebpack.js"
+    "handy-cli-plugin-linter": "linterExtendWebpack.js",
+    "handy-cli-plugin-typescript": "tsExtendWebpack.js"
   };
   Object.keys(extendsPlugins).forEach(dep => {
     const content = fs.readFileSync(
       path.join(handyServiceRoot, "node_modules", dep, "extendWebpack.js")
     );
-    fs.writeFileSync(path.join(appRoot, "config", extendsPlugins[dep]), content);
+    const target = path.join(appRoot, "config", "extends", extendsPlugins[dep]);
+    fs.ensureFileSync(target);
+    fs.writeFileSync(target, content);
   });
 
   // remove not used content in webpack.config.dev.js、webpack.config.prod.js

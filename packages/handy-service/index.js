@@ -10,7 +10,7 @@ const demoExclude = {
 };
 
 // state management  deps
-const pkgStateDependencies = {
+const stateManageDependencies = {
   mobx: {
     mobx: "^5.5.0",
     "mobx-react": "^5.2.8"
@@ -26,20 +26,18 @@ const typescriptDeps = {
 module.exports = async (appDir, answers) => {
   const { state = "normal" } = answers;
   const useTypescript = answers.features.includes("typescript");
+  const ignoreContent = ["idea/", ".vscode/", "node_modules", "build/", ".DS_Store"].join("\n");
+
   ["public", "src"].forEach(x => {
     execa.sync("cp", ["-r", path.join(useTypescript ? demoAppTsPath : demoAppPath, x), appDir]);
   });
 
-  const ignoreContent = ["idea/", ".vscode/", "node_modules", "build/", ".DS_Store"].join("\n");
-
   fs.writeFileSync(path.join(appDir, ".gitignore"), ignoreContent);
 
-  const used = state;
-  demoExclude[used].forEach(p => {
+  demoExclude[state].forEach(p => {
     execa.sync("rm", ["-r", path.join(appDir, p)]);
   });
-
-  execa.sync("mv", [path.join(appDir, "src/pages", used), path.join(appDir, "/src/pages/index")]);
+  execa.sync("mv", [path.join(appDir, "src/pages", state), path.join(appDir, "/src/pages/index")]);
 
   // remove not required  route
   const routePath = path.join(
@@ -63,7 +61,7 @@ module.exports = async (appDir, answers) => {
         "react-router-dom": "^4.3.1",
         "whatwg-fetch": "^3.0.0"
       },
-      pkgStateDependencies[state] || {},
+      stateManageDependencies[state] || {},
       useTypescript ? typescriptDeps : {}
     );
     pkg.dependencies = appDeps;
