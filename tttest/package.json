@@ -1,0 +1,25 @@
+{
+  "name": "tttest",
+  "version": "0.0.1",
+  "dependencies": {
+    "handy-demo-common": "^0.0.8"
+  },
+  "devDependencies": {
+    "handy-service": "^0.0.8"
+  },
+  "scripts": {
+    "start": "handy-service serve",
+    "build": "handy-service build"
+  },
+  "presets": {
+    "preset": "manual",
+    "features": [
+      "linter",
+      "stateManage",
+      "typescript"
+    ],
+    "lintCondition": "save",
+    "state": "mobx",
+    "linter": "tslint"
+  }
+}

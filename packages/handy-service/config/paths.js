@@ -4,7 +4,6 @@ const url = require("url");
 
 const appDirectory = fs.realpathSync(process.cwd());
 const resolveApp = relativePath => path.resolve(appDirectory, relativePath);
-
 const envPublicUrl = process.env.PUBLIC_URL;
 
 function ensureSlash(inputPath, needsSlash) {
@@ -28,23 +27,30 @@ function getServedPath(appPackageJson) {
   return ensureSlash(servedUrl, true);
 }
 
+const useTypescript = () => {
+  const presets = getAppPackageJsonProp(appPkgJson, "presets");
+  return presets.features.includes("typescript");
+};
+
+const appPkgJson = resolveApp("package.json");
+
 const paths = {
   dotenv: resolveApp(".env"),
   appPath: resolveApp("."),
   appBuild: resolveApp("build"),
   appPublic: resolveApp("public"),
   appHtml: resolveApp("public/index.html"),
-  appIndexJs: resolveApp("src/pages/index/index.js"),
-  appPackageJson: resolveApp("package.json"),
+  appPackageJson: appPkgJson,
   appSrc: resolveApp("src"),
   yarnLockFile: resolveApp("yarn.lock"),
   testsSetup: resolveApp("src/setupTests.js"),
   proxySetup: resolveApp("src/setupProxy.js"),
   appNodeModules: resolveApp("node_modules"),
-  publicUrl: getPublicUrl(resolveApp("package.json")),
-  servedPath: getServedPath(resolveApp("package.json")),
-  appName: getAppPackageJsonProp(resolveApp("package.json"), "name"),
-  appPresets: getAppPackageJsonProp(resolveApp("package.json"), "presets")
+  publicUrl: getPublicUrl(appPkgJson),
+  servedPath: getServedPath(appPkgJson),
+  appName: getAppPackageJsonProp(appPkgJson, "name"),
+  appPresets: getAppPackageJsonProp(appPkgJson, "presets"),
+  useTypescript: useTypescript()
 };
 
 module.exports = paths;

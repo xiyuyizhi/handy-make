@@ -6,12 +6,11 @@ export default [
     exact: true,
     component: NormalGitSearch,
   },
-  //@remove-before-createApp
+  // @remove-before-createApp
   {
     path: "/normal",
     exact: true,
     component: NormalGitSearch,
   },
-  //@remove-end-createApp
-
+  // @remove-end-createApp
 ];

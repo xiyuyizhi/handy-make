@@ -3,29 +3,16 @@ const path = require("path");
 const fs = require("fs-extra");
 const { extendPkgJson } = require("handy-utils-shared");
 const demoAppPath = path.join(__dirname, "node_modules", "handy-demo-app");
+const demoAppTsPath = path.join(__dirname, "node_modules", "handy-demo-app-ts");
 const demoExclude = {
   normal: [
     "src/stores",
     "src/pages/index",
     "src/pages/mobx",
-    "src/pages/redux",
     "src/pages/ts_mobx",
     "src/modules/mobxGitSearch"
   ],
-  mobx: [
-    "src/pages/index",
-    "src/pages/normal",
-    "src/pages/redux",
-    "src/pages/ts_mobx",
-    "src/modules/normalGitSearch"
-  ],
-  ts_mobx: [
-    "src/pages/index",
-    "src/pages/normal",
-    "src/pages/mobx",
-    "src/pages/redux",
-    "src/modules/normalGitSearch"
-  ]
+  mobx: ["src/pages/index", "src/pages/normal", "src/pages/ts_mobx", "src/modules/normalGitSearch"]
 };
 
 // state management  deps
@@ -38,35 +25,27 @@ const pkgStateDependencies = {
 
 const typescriptDeps = {
   "@types/react": "^16.4.18",
-  "@types/react-dom": "^16.0.9"
+  "@types/react-dom": "^16.0.9",
+  "@types/react-router-dom": "^4.3.1"
 };
 
 module.exports = async (appDir, answers) => {
   const { state = "normal" } = answers;
   const useTypescript = answers.features.includes("typescript");
   ["public", "src"].forEach(x => {
-    execa.sync("cp", ["-r", path.join(demoAppPath, x), appDir]);
+    execa.sync("cp", ["-r", path.join(useTypescript ? demoAppTsPath : demoAppPath, x), appDir]);
   });
 
-  const ignoreContent = [
-    "idea/",
-    ".vscode/",
-    "node_modules",
-    "build/",
-    ".DS_Store"
-  ].join("\n");
+  const ignoreContent = ["idea/", ".vscode/", "node_modules", "build/", ".DS_Store"].join("\n");
 
   fs.writeFileSync(path.join(appDir, ".gitignore"), ignoreContent);
 
-  const used = useTypescript ? `ts_${state}` : state;
+  const used = state;
   demoExclude[used].forEach(p => {
     execa.sync("rm", ["-r", path.join(appDir, p)]);
   });
 
-  execa.sync("mv", [
-    path.join(appDir, "src/pages", used),
-    path.join(appDir, "/src/pages/index")
-  ]);
+  execa.sync("mv", [path.join(appDir, "src/pages", used), path.join(appDir, "/src/pages/index")]);
 
   // remove not required  route
   const routePath = path.join(appDir, "/src/pages/index", "routes.js");

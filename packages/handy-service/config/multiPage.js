@@ -1,7 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-
+const paths = require("./paths");
 const appDirectory = fs.realpathSync(process.cwd());
 
 const pagesPaths = path.join(appDirectory, "src", "pages");
@@ -9,11 +9,11 @@ const pages = fs.readdirSync(pagesPaths);
 
 function getEntries() {
   return pages.reduce((all, page) => {
-    all[page] = [path.join(appDirectory, "src", "pages", page, "index.js")];
+    all[page] = [
+      path.join(appDirectory, "src", "pages", page, paths.useTypescript ? "index.tsx" : "index.js")
+    ];
     if (process.env.NODE_ENV !== "production") {
-      all[page].unshift(
-        require.resolve("react-dev-utils/webpackHotDevClient")
-      );
+      all[page].unshift(require.resolve("react-dev-utils/webpackHotDevClient"));
     }
     return all;
   }, {});

@@ -1,0 +1,34 @@
+{
+  "name": "handy-demo-app-ts",
+  "version": "0.0.8",
+  "dependencies": {
+    "handy-demo-common": "^0.0.8",
+    "react": "^16.5.2",
+    "react-dom": "^16.5.2",
+    "react-router-dom": "^4.3.1",
+    "whatwg-fetch": "^3.0.0",
+    "mobx": "^5.5.0",
+    "mobx-react": "^5.2.8",
+    "@types/react": "^16.4.18",
+    "@types/react-dom": "^16.0.9",
+    "@types/react-router-dom": "^4.3.1"
+  },
+  "devDependencies": {
+    "handy-service": "^0.0.8"
+  },
+  "scripts": {
+    "start": "handy-service serve",
+    "build": "handy-service build"
+  },
+  "presets": {
+    "preset": "manual",
+    "features": [
+      "linter",
+      "stateManage",
+      "typescript"
+    ],
+    "lintCondition": "save",
+    "state": "mobx",
+    "linter": "tslint"
+  }
+}

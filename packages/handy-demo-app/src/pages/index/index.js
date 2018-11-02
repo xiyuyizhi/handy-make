@@ -18,9 +18,9 @@ ReactDOM.render(
       </li>
     </ul>
   </Fragment>,
-  document.getElementById("root")
+  document.getElementById("root"),
 );
 
 if (module.hot) {
-  module.hot.accept(() => {}, () => {});
+  module.hot.accept(() => {});
 }
