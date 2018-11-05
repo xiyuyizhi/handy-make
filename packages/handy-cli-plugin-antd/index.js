@@ -1,4 +1,4 @@
-const { extendPkgJson } = require("handy-utils-shared");
+const { extendPkgJson, writeJsonToRoot } = require("handy-utils-shared");
 const pkgExtends = {
   typescript: {
     dependencies: {
@@ -22,7 +22,6 @@ function extendPkg(appDir, useTypescript) {
   const prop = useTypescript ? "typescript" : "normal";
   extendPkgJson(appDir)(pkg => {
     pkg.dependencies = Object.assign(pkg.dependencies, pkgExtends[prop].dependencies);
-    pkg.devDependencies = Object.assign(pkg.devDependencies, pkgExtends[prop].devDependencies);
     return pkg;
   });
 }
@@ -30,4 +29,7 @@ function extendPkg(appDir, useTypescript) {
 module.exports = (appDir, answer) => {
   const useTypescript = answer.features.includes("typescript");
   extendPkg(appDir, useTypescript);
+
+  // gene modifyVars.json
+  writeJsonToRoot(appDir, "modifyVars.json", { "primary-color": "red" });
 };

@@ -41,6 +41,7 @@
     "file-loader": "^2.0.0",
     "handy-cli-plugin-linter": "^0.0.9",
     "handy-cli-plugin-typescript": "^0.0.9",
+    "handy-cli-plugin-antd": "^0.0.9",
     "handy-demo-app": "^0.0.9",
     "handy-demo-app-ts": "^0.0.9",
     "handy-utils-shared": "^0.0.9",
@@ -67,7 +68,9 @@
     "url-loader": "^1.1.1",
     "webpack": "^4.20.2",
     "webpack-dev-server": "^3.1.9",
-    "webpack-manifest-plugin": "^2.0.4"
+    "webpack-manifest-plugin": "^2.0.4",
+    "ts-import-plugin": "^1.5.5",
+    "babel-plugin-import": "^1.11.0"
   },
   "engines": {
     "node": ">=8"

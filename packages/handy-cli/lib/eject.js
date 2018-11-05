@@ -45,7 +45,8 @@ module.exports = async () => {
   // copy  extendWebpack file to appRoot/config folder
   const extendsPlugins = {
     "handy-cli-plugin-linter": "linterExtendWebpack.js",
-    "handy-cli-plugin-typescript": "tsExtendWebpack.js"
+    "handy-cli-plugin-typescript": "tsExtendWebpack.js",
+    "handy-cli-plugin-antd": "antdExtendWebpack.js"
   };
   Object.keys(extendsPlugins).forEach(dep => {
     const content = fs.readFileSync(
@@ -75,7 +76,8 @@ module.exports = async () => {
       "handy-demo-app-ts",
       "handy-utils-shared",
       "handy-cli-plugin-typescript",
-      "handy-cli-plugin-linter"
+      "handy-cli-plugin-linter",
+      "handy-cli-plugin-antd"
     ].forEach(x => delete pkg.devDependencies[x]);
 
     pkg.scripts = Object.assign(pkg.scripts, {

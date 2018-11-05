@@ -298,12 +298,17 @@ if (!presets) {
 
 let extendWebpackPlugins;
 
-extendWebpackPlugins = ["./extends/tsExtendWebpack", "./extends/linterExtendWebpack"];
+extendWebpackPlugins = [
+  "./extends/tsExtendWebpack",
+  "./extends/linterExtendWebpack",
+  "./extends/antdExtendWebpack"
+];
 
 // @remove-before-eject
 extendWebpackPlugins = [
   "handy-cli-plugin-typescript/extendWebpack",
-  "handy-cli-plugin-linter/extendWebpack"
+  "handy-cli-plugin-linter/extendWebpack",
+  "handy-cli-plugin-antd/extendWebpack"
 ];
 // @remove-end-eject
 

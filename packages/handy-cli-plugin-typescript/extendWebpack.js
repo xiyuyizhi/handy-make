@@ -1,5 +1,5 @@
 module.exports = (config, presets, paths, env) => {
-  if (presets.linter === "tslint") {
+  if (presets.features.includes("typescript")) {
     config.resolve.extensions.push(".ts", ".tsx");
     config.module.rules.unshift({
       enforce: "pre",
