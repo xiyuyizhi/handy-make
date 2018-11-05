@@ -28,6 +28,7 @@ async function creator(appName) {
       }
     ]);
     if (override) {
+      console.log(chalk.green("removing..."));
       fs.removeSync(appDir);
     } else {
       process.exit(1);
