@@ -108,7 +108,7 @@ if (process.channel) {
   watchModifyVars();
 } else {
   const startChild = () => {
-    const childProcess = fork("./scripts/serve.js");
+    const childProcess = fork(path.join(__dirname, "./serve.js"));
     childProcess.on("message", SIG => {
       if (SIG === "RESTART") {
         childProcess.kill("SIGTERM");
