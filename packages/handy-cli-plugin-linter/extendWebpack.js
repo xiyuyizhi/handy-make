@@ -1,4 +1,5 @@
 module.exports = (config, presets, paths, env) => {
+  if (!presets.linter) return;
   if (
     presets.linter.indexOf("eslint") !== -1
     && presets.lintCondition === "save"

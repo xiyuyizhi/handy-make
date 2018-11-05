@@ -24,7 +24,7 @@ const sassModuleRegex = /\.module\.sass$/;
 const stylusRegex = /.styl$/;
 const stylusModuleRegex = /\.module\.styl$/;
 
-const getStyleLoaders = (cssOptions, preProcessor) => {
+const getStyleLoaders = (cssOptions, preProcessor, preProcessorOptions) => {
   const loaders = [
     require.resolve("style-loader"),
     {
@@ -45,7 +45,10 @@ const getStyleLoaders = (cssOptions, preProcessor) => {
     }
   ];
   if (preProcessor) {
-    loaders.push(require.resolve(preProcessor));
+    loaders.push({
+      loader: require.resolve(preProcessor),
+      options: preProcessorOptions
+    });
   }
   return loaders;
 };
@@ -146,7 +149,10 @@ const config = {
           {
             test: lessRegex,
             exclude: lessModuleRegex,
-            use: getStyleLoaders({ importLoaders: 2 }, "less-loader")
+            use: getStyleLoaders({ importLoaders: 2 }, "less-loader", {
+              modifyVars: require(paths.modifyVarsJson),
+              javascriptEnabled: true
+            })
           },
           {
             test: lessModuleRegex,

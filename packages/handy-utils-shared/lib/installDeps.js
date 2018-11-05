@@ -15,6 +15,7 @@ module.exports = (deps, root) => {
       pckManager = "tnpm";
     }
   } catch (x) {}
+
   if (deps) {
     deps.map(dep => {
       return execa.sync(pckManager, ["install", dep], {

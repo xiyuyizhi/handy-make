@@ -50,7 +50,8 @@ const paths = {
   servedPath: getServedPath(appPkgJson),
   appName: getAppPackageJsonProp(appPkgJson, "name"),
   appPresets: getAppPackageJsonProp(appPkgJson, "presets"),
-  useTypescript: useTypescript()
+  useTypescript: useTypescript(),
+  modifyVarsJson: resolveApp("modifyVars.json")
 };
 
 module.exports = paths;

@@ -34,7 +34,7 @@ if (env.stringified["process.env"].NODE_ENV !== "\"production\"") {
   throw new Error("Production builds must have NODE_ENV=production.");
 }
 
-const getStyleLoaders = (cssOptions, preProcessor) => {
+const getStyleLoaders = (cssOptions, preProcessor, preProcessorOptions) => {
   const loaders = [
     MiniCssExtractPlugin.loader,
     {
@@ -58,9 +58,12 @@ const getStyleLoaders = (cssOptions, preProcessor) => {
   if (preProcessor) {
     loaders.push({
       loader: require.resolve(preProcessor),
-      options: {
-        sourceMap: shouldUseSourceMap
-      }
+      options: Object.assign(
+        {
+          sourceMap: shouldUseSourceMap
+        },
+        preProcessorOptions
+      )
     });
   }
   return loaders;
@@ -206,7 +209,11 @@ const config = {
                 importLoaders: 2,
                 sourceMap: shouldUseSourceMap
               },
-              "less-loader"
+              "less-loader",
+              {
+                modifyVars: require(paths.modifyVarsJson),
+                javascriptEnabled: true
+              }
             )
           },
           {

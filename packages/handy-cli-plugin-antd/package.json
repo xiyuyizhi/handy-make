@@ -1,0 +1,13 @@
+{
+  "name": "handy-cli-plugin-antd",
+  "version": "0.0.9",
+  "author": "xiyuyizhi",
+  "dependencies": {
+    "handy-utils-shared": "^0.0.9"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/xiyuyizhi/handy-make"
+  },
+  "license": "ISC"
+}

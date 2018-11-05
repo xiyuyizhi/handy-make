@@ -21,10 +21,6 @@ module.exports = api => {
         value: "mobx"
       },
       {
-        name: "redux",
-        value: "redux"
-      },
-      {
         name: "dva",
         value: "dva"
       }

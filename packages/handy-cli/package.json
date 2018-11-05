@@ -23,6 +23,7 @@
     "globby": "^8.0.1",
     "handy-cli-plugin-linter": "^0.0.9",
     "handy-cli-plugin-typescript": "^0.0.9",
+    "handy-cli-plugin-antd": "^0.0.9",
     "handy-demo-common": "^0.0.9",
     "handy-service": "^0.0.9",
     "handy-utils-shared": "^0.0.9",

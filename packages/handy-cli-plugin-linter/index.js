@@ -86,13 +86,14 @@ function extendPkg(appDir, lintType) {
 
 module.exports = (appDir, answer) => {
   const { lintCondition, linter } = answer;
+  if (lintCondition === "commit") {
+    extendPkg(appDir, linter);
+  }
+  if (!answer.linter) return;
   if (answer.linter.indexOf("eslint") !== -1) {
     geneEslintrc(appDir, answer);
   }
   if (answer.linter === "tslint") {
     geneTslintJson(appDir);
-  }
-  if (lintCondition === "commit") {
-    extendPkg(appDir, linter);
   }
 };

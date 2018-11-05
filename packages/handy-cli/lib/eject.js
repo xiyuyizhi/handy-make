@@ -5,8 +5,6 @@ const chalk = require("chalk");
 const path = require("path");
 const { extendPkgJson, installDeps } = require("handy-utils-shared");
 
-const DEV_DEBUG = process.env.NODE_ENV === "DEV" || process.env.NODE_ENV === "DEBUG";
-
 module.exports = async () => {
   const { ensureInject } = await inquirer.prompt({
     type: "confirm",
@@ -87,16 +85,16 @@ module.exports = async () => {
     return pkg;
   });
 
-  // install deps
-  if (!DEV_DEBUG) {
-    try {
-      installDeps(null, appRoot);
-    } catch (x) {
-      console.log(x);
-      process.exit(1);
-    }
-  }
+  // gene  .eslintignore for scripts and config folder
+  fs.writeFileSync(path.join(appRoot, ".eslintignore"), "config/**\nscripts/**");
 
+  // install deps
+  try {
+    installDeps(null, appRoot);
+  } catch (x) {
+    console.log(x);
+    process.exit(1);
+  }
   console.log(chalk.green("inject success..."));
 
   execa.sync("git", ["add", "."]);
