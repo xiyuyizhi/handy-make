@@ -33,7 +33,7 @@ module.exports = async () => {
   }
 
   console.log("eject...");
-
+  let presets;
   // copy necessary files
   const handyServiceRoot = path.resolve(__dirname, "../", "node_modules", "handy-service");
   const appRoot = process.cwd();
@@ -68,6 +68,7 @@ module.exports = async () => {
   // extends project package.json
   const { dependencies } = extendPkgJson(handyServiceRoot, true);
   extendPkgJson(appRoot)(pkg => {
+    presets = pkg.presets;
     pkg.devDependencies = Object.assign({}, pkg.devDependencies, dependencies);
 
     [
@@ -92,7 +93,7 @@ module.exports = async () => {
 
   // install deps
   try {
-    installDeps(null, appRoot);
+    installDeps(null, appRoot, presets.pkgManager);
   } catch (x) {
     console.log(x);
     process.exit(1);

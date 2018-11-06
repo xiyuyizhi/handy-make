@@ -1,5 +1,7 @@
 const inquirer = require("inquirer");
 const defaultPreset = require("../util/defaultPreset");
+const { pkgManagerCheck } = require("handy-utils-shared");
+
 class Prompt {
   constructor(appName, promptsList) {
     this.appName = appName;
@@ -23,7 +25,12 @@ class Prompt {
   }
 
   async confirm() {
-    this.confirmList = [...this.presets, this.featureList, ...this.promptBelowFeature];
+    this.confirmList = [
+      ...this.presets,
+      this.featureList,
+      ...this.promptBelowFeature,
+      ...this.pkgManagerSelect()
+    ];
     let answers = await inquirer.prompt(this.confirmList);
     if (answers.preset === "default") {
       answers = defaultPreset;
@@ -55,6 +62,32 @@ class Prompt {
         ]
       }
     ];
+  }
+
+  pkgManagerSelect() {
+    if (pkgManagerCheck.hasYarn) {
+      return [
+        {
+          type: "list",
+          name: "pkgManager",
+          message: "select the manager used to install dependencies",
+          when: answers => {
+            return answers.preset === "manual";
+          },
+          choices: [
+            {
+              name: "npm",
+              value: "npm"
+            },
+            {
+              name: "yarn",
+              value: "yarn"
+            }
+          ]
+        }
+      ];
+    }
+    return [];
   }
 
   addFeature(feature) {

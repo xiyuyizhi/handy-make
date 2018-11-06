@@ -55,7 +55,6 @@ async function creator(appName) {
     }
   };
   pkg.presets = answers;
-
   writeJsonToRoot(appDir, "package.json", pkg);
 
   execa.sync("git", ["init"], {
@@ -80,13 +79,15 @@ async function creator(appName) {
           Object.keys(dependencies)
             .map(key => `${key}${dependencies[key]}`.replace("^", "@"))
             .filter(dep => dep.indexOf("handy-demo-common") === -1),
-          appDir
+          appDir,
+          answers.pkgManager
         );
         await installDeps(
           Object.keys(devDependencies)
             .map(key => `${key}${devDependencies[key]}`.replace("^", "@"))
             .filter(dep => dep.indexOf("handy-service") === -1),
-          appDir
+          appDir,
+          answers.pkgManager
         );
       }
 

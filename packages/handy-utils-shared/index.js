@@ -7,5 +7,6 @@ module.exports = {
   installDeps: require("./lib/installDeps"),
   extendPkgJson: require("./lib/extendPackageJson.js"),
   writeJsonToRoot: require("./lib/writeJsonToRoot.js"),
+  pkgManagerCheck: require("./lib/pkgManagerCheck.js"),
   getPkgVersion
 };
