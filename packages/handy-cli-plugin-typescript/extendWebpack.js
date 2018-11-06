@@ -11,7 +11,7 @@ module.exports = (config, presets, paths, env) => {
         rule.oneOf.unshift({
           test: /\.(ts|tsx)$/,
           include: paths.appSrc,
-          loader: require.resolve("awesome-typescript-loader")
+          loaders: [require.resolve("thread-loader"), require.resolve("awesome-typescript-loader")]
         });
       }
     });
