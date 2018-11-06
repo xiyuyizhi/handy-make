@@ -2,7 +2,7 @@ const { extendPkgJson, writeJsonToRoot } = require("handy-utils-shared");
 const pkgExtends = {
   typescript: {
     dependencies: {
-      antd: "^3.10.3"
+      antd: "^3.8.2"
     },
     devDependencies: {
       "ts-import-plugin": "^1.5.5"

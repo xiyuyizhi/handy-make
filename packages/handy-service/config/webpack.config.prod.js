@@ -2,6 +2,7 @@ const path = require("path");
 const chalk = require("chalk");
 const autoprefixer = require("autoprefixer");
 const webpack = require("webpack");
+const BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
@@ -276,7 +277,8 @@ const config = {
       fileName: "asset-manifest.json",
       publicPath
     }),
-    new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/)
+    new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
+    new BundleAnalyzerPlugin()
   ],
   node: {
     dgram: "empty",
