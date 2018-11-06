@@ -1,4 +1,3 @@
-const execa = require("execa");
 const path = require("path");
 const fs = require("fs-extra");
 const { extendPkgJson } = require("handy-utils-shared");
@@ -29,15 +28,15 @@ module.exports = async (appDir, answers) => {
   const ignoreContent = ["idea/", ".vscode/", "node_modules", "build/", ".DS_Store"].join("\n");
 
   ["public", "src"].forEach(x => {
-    execa.sync("cp", ["-r", path.join(useTypescript ? demoAppTsPath : demoAppPath, x), appDir]);
+    fs.copySync(path.join(useTypescript ? demoAppTsPath : demoAppPath, x), path.join(appDir, x));
   });
 
   fs.writeFileSync(path.join(appDir, ".gitignore"), ignoreContent);
 
   demoExclude[state].forEach(p => {
-    execa.sync("rm", ["-r", path.join(appDir, p)]);
+    fs.removeSync(path.join(appDir, p));
   });
-  execa.sync("mv", [path.join(appDir, "src/pages", state), path.join(appDir, "/src/pages/index")]);
+  fs.moveSync(path.join(appDir, "src/pages", state), path.join(appDir, "/src/pages/index"));
 
   // remove not required  route
   const routePath = path.join(
