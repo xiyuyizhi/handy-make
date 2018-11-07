@@ -1,8 +1,8 @@
 const path = require("path");
 const fs = require("fs-extra");
 const { extendPkgJson } = require("handy-utils-shared");
-const demoAppPath = path.join(__dirname, "node_modules", "handy-demo-app");
-const demoAppTsPath = path.join(__dirname, "node_modules", "handy-demo-app-ts");
+const demoAppPath = process.platform === "win32" ? path.join(__dirname, "../", "handy-demo-app") : path.join(__dirname, "node_modules", "handy-demo-app");
+const demoAppTsPath = process.platform === "win32" ? path.join(__dirname, "../", "handy-demo-app") : path.join(__dirname, "node_modules", "handy-demo-app-ts");
 const demoExclude = {
   normal: ["src/stores", "src/pages/index", "src/pages/mobx", "src/modules/mobxGitSearch"],
   mobx: ["src/pages/index", "src/pages/normal", "src/modules/normalGitSearch"]
