@@ -1,11 +1,7 @@
 module.exports = (config, presets, paths, env) => {
   if (presets.features.includes("typescript")) {
     config.resolve.extensions.push(".ts", ".tsx");
-    // config.module.rules.unshift({
-    //   enforce: "pre",
-    //   test: /\.js$/,
-    //   loader: require.resolve("source-map-loader")
-    // });
+
     config.module.rules.forEach(rule => {
       if (rule.oneOf) {
         rule.oneOf.unshift({

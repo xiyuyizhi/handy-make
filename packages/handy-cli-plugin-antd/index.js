@@ -10,7 +10,7 @@ const pkgExtends = {
   },
   normal: {
     dependencies: {
-      antd: "^3.10.3"
+      antd: "^3.8.2"
     },
     devDependencies: {
       "babel-plugin-import": "^1.11.0"
@@ -28,6 +28,7 @@ function extendPkg(appDir, useTypescript) {
 
 module.exports = (appDir, answer) => {
   const useTypescript = answer.features.includes("typescript");
+
   extendPkg(appDir, useTypescript);
 
   // gene modifyVars.json

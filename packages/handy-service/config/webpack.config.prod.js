@@ -12,6 +12,8 @@ const ReplaceHtmlPlugin = require("./replaceHtmlPlugin");
 const paths = require("./paths");
 const multiPage = require("./multiPage");
 const getClientEnvironment = require("./env");
+const presets = paths.appPresets;
+const hasAntd = presets.features.includes("antd");
 
 const publicPath = paths.servedPath;
 const publicUrl = publicPath.slice(0, -1);
@@ -212,7 +214,7 @@ const config = {
               },
               "less-loader",
               {
-                modifyVars: require(paths.modifyVarsJson),
+                modifyVars: hasAntd ? require(paths.modifyVarsJson) : {},
                 javascriptEnabled: true
               }
             )
@@ -290,8 +292,6 @@ const config = {
 };
 
 config.plugins = [...multiPage.htmlWebpackPlugins, ...config.plugins];
-
-const presets = paths.appPresets;
 
 if (!presets) {
   console.log(chalk.red("package.json not includes presets field"));
