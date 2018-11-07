@@ -5,7 +5,6 @@ const inquirer = require("inquirer");
 const execa = require("execa");
 const {
   symlink,
-  getPkgVersion,
   installDeps,
   extendPkgJson,
   writeJsonToRoot
@@ -36,18 +35,20 @@ async function creator(appName) {
   }
   fs.mkdirSync(appDir);
 
-  const prompt = new Prompt(appName, getModuleList(path.resolve(__dirname, "../", "prompts")));
+  const prompt = new Prompt(
+    appName,
+    getModuleList(path.resolve(__dirname, "../", "prompts"))
+  );
   const { answers, plugins } = await prompt.confirm();
 
-  const cliVersion = getPkgVersion(path.join(__dirname, "../", "package.json"));
   const pkg = {
     name: appName,
     version: "0.0.1",
     dependencies: {
-      "handy-demo-common": `^${cliVersion}`
+      "handy-demo-common": "latest"
     },
     devDependencies: {
-      "handy-service": `^${cliVersion}`
+      "handy-service": "latest"
     },
     scripts: {
       start: "handy-service serve",
@@ -117,7 +118,9 @@ async function creator(appName) {
       now,you can ${chalk.red(`cd ${appName}`)},\n
       run ${chalk.red("npm run start")} to start server, \n
       and ${chalk.red("npm run build")} to build you app,\n
-      if you want modify webpack config indeed,you can run ${chalk.red("handy eject")}
+      if you want modify webpack config indeed,you can run ${chalk.red(
+    "handy eject"
+  )}
   `)
   );
 }
