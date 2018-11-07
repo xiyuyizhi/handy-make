@@ -91,11 +91,10 @@ async function creator(appName) {
         );
       }
 
-      symlink(
+      fs.copySync(
         path.join(__dirname, "../../", "handy-demo-common"),
         path.join(appDir, "node_modules", "handy-demo-common")
       );
-
       symlink(
         require.resolve("handy-service/bin/handy-service"),
         path.join(appDir, "node_modules", ".bin", "handy-service")
