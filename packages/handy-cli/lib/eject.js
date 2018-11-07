@@ -57,6 +57,20 @@ module.exports = async () => {
     fs.writeFileSync(target, content);
   });
 
+  // copy webpack.ts-transformers.js to extends
+  const transformers = fs.readFileSync(
+    path.join(
+      handyServiceRoot,
+      "node_modules",
+      "handy-cli-plugin-antd",
+      "webpack.ts-transformers.js"
+    )
+  );
+  fs.writeFileSync(
+    path.join(appRoot, "config", "extends", "webpack.ts-transformers.js"),
+    transformers
+  );
+
   // remove not used content in webpack.config.dev.js、webpack.config.prod.js
   ["webpack.config.dev.js", "webpack.config.prod.js"].forEach(file => {
     const configPath = path.join(appRoot, "config", file);

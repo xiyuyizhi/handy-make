@@ -118,7 +118,7 @@ async function creator(appName) {
       now,you can ${chalk.red(`cd ${appName}`)},\n
       run ${chalk.red("npm run start")} to start server, \n
       and ${chalk.red("npm run build")} to build you app,\n
-      if you want modify webpack config indeed,you can  ${chalk.red("handy eject")}
+      if you want modify webpack config indeed,you can run ${chalk.red("handy eject")}
   `)
   );
 }

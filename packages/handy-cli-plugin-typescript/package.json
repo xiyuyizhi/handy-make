@@ -2,13 +2,12 @@
   "name": "handy-cli-plugin-typescript",
   "version": "0.0.9",
   "dependencies": {
-    "awesome-typescript-loader": "^5.2.1",
-    "source-map-loader": "^0.2.4",
+    "fs-extra": "^6.0.1",
+    "thread-loader": "^1.2.0",
+    "ts-loader": "^5.3.0",
     "tslint": "^5.11.0",
     "tslint-loader": "^3.5.4",
     "tslint-react": "^3.6.0",
-    "typescript": "^3.1.3",
-    "thread-loader": "^1.2.0",
-    "fs-extra": "^6.0.1"
+    "typescript": "^3.1.3"
   }
 }

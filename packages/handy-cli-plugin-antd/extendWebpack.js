@@ -1,4 +1,4 @@
-const tsImportPluginFactory = require("ts-import-plugin");
+const path = require("path");
 
 const getSpecialRule = (config, regStr) => {
   for (let rule of config.module.rules) {
@@ -19,18 +19,11 @@ module.exports = (config, presets) => {
   const regStr = hasTs ? "/\\.(ts|tsx)$/" : "/\\.(js|jsx|mjs)$/";
   const loaderConfig = getSpecialRule(config, regStr);
   if (hasTs) {
-    // awesome-typescript-loader
-    loaderConfig.options = {
-      getCustomTransformers: () => ({
-        before: [
-          tsImportPluginFactory({
-            libraryName: "antd",
-            libraryDirectory: "lib",
-            style: true
-          })
-        ]
-      })
-    };
+    // add getCustomTransformers to ts-loader options
+    // handy-cli-plugin-typescript/extendWebpack.js
+    loaderConfig.use[1].options = Object.assign(loaderConfig.use[1].options, {
+      getCustomTransformers: path.join(__dirname, "./webpack.ts-transformers.js")
+    });
   } else {
     // babel-loader
     loaderConfig.options.plugins.push([

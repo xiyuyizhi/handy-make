@@ -13,7 +13,7 @@ module.exports = (deps, root, manager) => {
   try {
     if (DEV_DEBUG) {
       execa.sync("tnpm", ["-v"]);
-      // pkgManager = "tnpm";
+      pkgManager = "tnpm";
     }
   } catch (x) {}
 
