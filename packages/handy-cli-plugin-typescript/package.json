@@ -1,6 +1,6 @@
 {
   "name": "handy-cli-plugin-typescript",
-  "version": "0.0.9",
+  "version": "1.0.0",
   "dependencies": {
     "fs-extra": "^6.0.1",
     "thread-loader": "^1.2.0",

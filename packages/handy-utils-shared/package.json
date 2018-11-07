@@ -1,6 +1,6 @@
 {
   "name": "handy-utils-shared",
-  "version": "0.0.9",
+  "version": "1.0.0",
   "main": "index.js",
   "dependencies": {
     "cmd-shim": "^2.0.2",
