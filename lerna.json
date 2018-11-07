@@ -1,15 +1,10 @@
 {
-  "packages": [
-    "packages/*"
-  ],
-  "version": "1.0.2",
+  "packages": ["packages/*"],
+  "version": "independent",
   "command": {
     "publish": {
       "message": "(release): publish %s",
-      "ignoreChanges": [
-        "ignored-file",
-        "*.md"
-      ]
+      "ignoreChanges": ["ignored-file", "*.md"]
     }
   }
 }
