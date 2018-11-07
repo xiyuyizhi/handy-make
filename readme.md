@@ -20,4 +20,6 @@ handy create <new-app>
 
 ## PreView
 
+![](./preview.gif)
+
 ## User Guide
