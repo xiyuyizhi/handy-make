@@ -19,11 +19,11 @@ module.exports = api => {
       {
         name: "mobx",
         value: "mobx"
-      },
-      {
-        name: "dva",
-        value: "dva"
       }
+      // {
+      //   name: "dva",
+      //   value: "dva"
+      // }
     ]
   });
 };

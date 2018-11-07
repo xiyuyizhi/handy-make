@@ -105,7 +105,7 @@ async function creator(appName) {
       process.exit(1);
     }
   } else {
-    installDeps(null, appDir);
+    installDeps(null, appDir, answers.pkgManager);
   }
   console.log(chalk.green("install dependencies success"));
 
