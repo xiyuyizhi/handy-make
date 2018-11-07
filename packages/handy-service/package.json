@@ -1,6 +1,6 @@
 {
   "name": "handy-service",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "",
   "bin": "bin/handy-service.js",
   "main": "index.js",
@@ -42,8 +42,8 @@
     "handy-cli-plugin-antd": "^1.0.1",
     "handy-cli-plugin-linter": "^1.0.0",
     "handy-cli-plugin-typescript": "^1.0.1",
-    "handy-demo-app": "^1.0.1",
-    "handy-demo-app-ts": "^1.0.1",
+    "handy-demo-app": "^1.0.2",
+    "handy-demo-app-ts": "^1.0.2",
     "handy-utils-shared": "^1.0.0",
     "html-webpack-plugin": "^4.0.0-alpha.2",
     "less": "^3.8.1",
