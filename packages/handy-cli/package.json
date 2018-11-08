@@ -1,7 +1,7 @@
 {
   "name": "handy-cli",
   "version": "1.0.4",
-  "description": " command line  interface for use handy to build your react app ",
+  "description": " command line  interface for user to create react app conveniency",
   "main": "bin/handy.js",
   "bin": {
     "handy": "bin/handy.js"
@@ -9,6 +9,12 @@
   "scripts": {
     "dev": "node ./bin/handy"
   },
+  "keywords": [
+    "react",
+    "scaffold",
+    "react-scaffold",
+    "react-tool"
+  ],
   "author": "xiyuyizhi",
   "repository": {
     "type": "git",
