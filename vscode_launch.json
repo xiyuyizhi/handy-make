@@ -1,0 +1,68 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "create",
+      "program": "${workspaceFolder}/packages/handy-cli/bin/handy.js",
+      "args": ["create", "aaa"],
+      "env": {
+        "NODE_ENV": "PRODUCTION"
+      },
+      "internalConsoleOptions": "neverOpen",
+      "console": "externalTerminal"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "create_debug",
+      "program": "${workspaceFolder}/packages/handy-cli/bin/handy.js",
+      "args": ["create", "aaa"],
+      "env": {
+        "NODE_ENV": "DEBUG"
+      },
+      "internalConsoleOptions": "neverOpen",
+      "console": "externalTerminal"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "create_install",
+      "program": "${workspaceFolder}/packages/handy-cli/bin/handy.js",
+      "args": ["create", "aaa"],
+      "env": {
+        "NODE_ENV": "DEBUG",
+        "TEST_INSTALL": "true"
+      },
+      "internalConsoleOptions": "neverOpen",
+      "console": "externalTerminal"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "test create comp",
+      "program": "${workspaceFolder}/packages/handy-cli/bin/handy.js",
+      "args": ["comp", "scrollList"],
+      "cwd": "${workspaceFolder}/aaa/src/modules",
+      "env": {
+        "NODE_ENV": "DEBUG"
+      },
+      "internalConsoleOptions": "neverOpen",
+      "console": "externalTerminal"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "test eject",
+      "program": "${workspaceFolder}/packages/handy-cli/bin/handy.js",
+      "args": ["eject"],
+      "cwd": "${workspaceFolder}/aaa",
+      "env": {
+        "NODE_ENV": "DEBUG"
+      },
+      "internalConsoleOptions": "neverOpen",
+      "console": "externalTerminal"
+    }
+  ]
+}

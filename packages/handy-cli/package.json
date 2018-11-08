@@ -14,7 +14,7 @@
     "type": "git",
     "url": "https://github.com/xiyuyizhi/handy-make"
   },
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "chalk": "^2.4.1",
     "commander": "^2.16.0",

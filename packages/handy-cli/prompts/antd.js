@@ -1,6 +1,6 @@
 module.exports = api => {
   api.addFeature({
-    name: "antd design",
+    name: "ant design",
     value: "antd"
   });
 
