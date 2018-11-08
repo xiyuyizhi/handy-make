@@ -1,11 +1,11 @@
 {
   "name": "handy-demo-app-ts",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "dependencies": {
     "@types/react": "^16.4.18",
     "@types/react-dom": "^16.0.9",
     "@types/react-router-dom": "^4.3.1",
-    "handy-demo-common": "^1.0.0",
+    "handy-demo-common": "^1.0.4",
     "mobx": "^5.5.0",
     "mobx-react": "^5.2.8",
     "react": "^16.5.2",
@@ -14,7 +14,7 @@
     "whatwg-fetch": "^3.0.0"
   },
   "devDependencies": {
-    "handy-service": "^1.0.3"
+    "handy-service": "^1.0.4"
   },
   "scripts": {
     "start": "handy-service serve",
