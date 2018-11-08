@@ -2,6 +2,8 @@
 
 > a tool for create react app,support common use features,inspired by vue-cli and create-react-app
 
+English|[中文](./readme_zh.md)
+
 ## Features
 
 - Create react apps with no build configuration
