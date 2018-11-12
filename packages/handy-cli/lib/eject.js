@@ -39,7 +39,7 @@ module.exports = async () => {
   const appRoot = process.cwd();
 
   ["config", "scripts"].forEach(dir => {
-    execa.sync("cp", ["-r", path.join(handyServiceRoot, dir), appRoot]);
+    fs.copyFileSync(path.join(handyServiceRoot, dir), appRoot);
   });
 
   // copy  extendWebpack file to appRoot/config folder
