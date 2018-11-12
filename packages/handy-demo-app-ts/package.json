@@ -1,6 +1,6 @@
 {
   "name": "handy-demo-app-ts",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "dependencies": {
     "@types/react": "^16.4.18",
     "@types/react-dom": "^16.0.9",
@@ -14,7 +14,7 @@
     "whatwg-fetch": "^3.0.0"
   },
   "devDependencies": {
-    "handy-service": "^1.0.4"
+    "handy-service": "^1.0.5"
   },
   "scripts": {
     "start": "handy-service serve",

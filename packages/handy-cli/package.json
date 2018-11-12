@@ -1,6 +1,6 @@
 {
   "name": "handy-cli",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": " command line  interface for user to create react app conveniency",
   "main": "bin/handy.js",
   "bin": {
@@ -31,7 +31,7 @@
     "handy-cli-plugin-linter": "^1.0.4",
     "handy-cli-plugin-typescript": "^1.0.1",
     "handy-demo-common": "^1.0.4",
-    "handy-service": "^1.0.4",
+    "handy-service": "^1.0.5",
     "handy-utils-shared": "^1.0.4",
     "inquirer": "^6.0.0",
     "semver": "^5.5.0"
