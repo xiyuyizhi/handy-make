@@ -23,9 +23,11 @@ English|[中文](./readme_zh.md)
 ## Install
 
 ```
+if you use npm 
 npm install handy-cli -g
 
-yarn add handy-cli -g
+if you use yarn
+yarn global add handy-cli 
 ```
 
 ## Usage

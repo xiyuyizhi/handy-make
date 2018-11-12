@@ -23,9 +23,11 @@
 ## 安装
 
 ```
+如果你使用npm管理node包
 npm install handy-cli -g
 
-yarn add handy-cli -g
+如果你使用yarn管理node包
+yarn global add handy-cli 
 ```
 
 ## 使用
