@@ -1,36 +1,36 @@
 ## handy-cli
 
-> a tool for create react app,support common use features,inspired by vue-cli and create-react-app
+> 初始化 react 应用的脚手架工具，支持常用的特性，灵感来自 vue-cli 和 create-react-app
 
-English|[中文](./readme_zh.md)
+中文|[English](./readme_en.md)
 
-## Features
+## 特性
 
-- Create react apps with no build configuration
+- 简单易用，零配置
 
-- Rich features to select (Ant Design,TypeScript,Mobx,EsLint,TsLint)
+- 丰富的特性可供选择 (Ant Design,TypeScript,Mobx,EsLint,TsLint)
 
-- Can eject webpack config to project directory,give you more controll
+- 支持导出 webpack 相关配置到项目目录下
 
-- Multiple pages support
+- 多页面的支持
 
-- Multiple state management way
+- 提供多种状态管理方式
 
-- Easy custom ant design theme
+- 使用 ant-design 后,非常容易定制化 ant-design 主题
 
-- Support lint code when commit or save code
+- 支持代码保存时和代码提交时校验代码风格
 
-## Install
+## 安装
 
 ```
-if you use npm 
+如果你使用npm管理node包
 npm install handy-cli -g
 
-if you use yarn
-yarn global add handy-cli 
+如果你使用yarn管理node包
+yarn global add handy-cli
 ```
 
-## Usage
+## 使用
 
 ```
 handy create <new-app>
@@ -38,11 +38,11 @@ handy create <new-app>
 handy eject
 ```
 
-## Preview
+## 预览
 
 ![](./preview.gif)
 
-## User Guide
+## 使用手册
 
 - [Folder Structure](#folder-structure)
 
@@ -62,7 +62,7 @@ handy eject
 
 ### Folder Structure
 
-After run `handy create you-app-name`(select ant-design、linter、mobx),you can get the folder with the follow structure
+运行`handy create you-app-name`(例如选择了 ant-design、eslint、mobx),handy-cli 会生成如下项目结构
 
 ```
 ├── node_modules
@@ -96,21 +96,21 @@ After run `handy create you-app-name`(select ant-design、linter、mobx),you can
         └── index.js
 ```
 
-Under src,there have some subdirectories
+在 src 目录下，有如下子目录
 
-- components(the common components folder), all components shared by multi router pages on this
+- components(公共组件目录), 多个路由页面都会用到的公共组件放在这
 
-- modules(the router pages folder),each subdirectory under modules represent **a router page**,such as Dashboard、Welcome
+- modules(路由页面目录),modules 下的每一个子文件夹代表一个单一的路由页面,比如 Dashboard 页面,欢迎页面
 
-- pages(the multi pages folder), each subdirectory under pages is **a single SPA**
+- pages(多页面文件夹), 每一个子文件夹代表一个单一的**SPA 项目**,主要存放 SPA 的入口文件
 
-- stores(the mobx stores folder,if you select use Mobx when create app)
+- stores(存放 mobx 的 stores)
 
 - utils
 
-#### Note
+#### 注意
 
-The folder show above already configure in `config.resolve.alias`,so,you can write
+上面说的这些目录已经配置在`config.resolve.alias`,所以，在代码中不需要指定相对路径了
 
 ```
 in src/modules/mobxGitSearch/index.js
@@ -128,9 +128,9 @@ import {shake} from "../utils"
 
 ### Single And Multi Page
 
-handy-cli create single page by default,but it's easy to add new page.
+使用 handy-cli 初始化项目后，src/pages 下只有一个 index 文件夹，也就是是个单页应用，要想添加新的独立的单页面很简单
 
-after init,you can add new page files under src/pages, like doule12
+例如，在 src/pages 下新建 doule12 文件夹
 
 ```
 src
@@ -153,21 +153,23 @@ if (module.hot) {
 }
 ```
 
-then, restart server,location to localhost:3000/doble12,you can get the view
+重启服务后访问 localhost:3000/doble12 就可以看到新加的页面，而 localhost:3000 是默认的单页面
 
 ### Eject
 
-on you apps root directory,after commit your code , you can run `handy eject` to export webpack configs and scripts to your project to do same thing customized.
+如果你想修改一些 webpack 的配置，在项目根目录，确认代码已经 commit 后，可以执行`handy eject`来导出 webpack 的相关配置
 
 ### Linter
 
-Support eslint and tslint.
+支持 Tslint 和 Eslint
 
-when you select the TypeScript feature,there is only Tslint allow,otherwise support [eslint with airbnb config](https://www.npmjs.com/package/eslint-config-airbnb) and [eslint with prettier config](https://www.npmjs.com/package/eslint-config-prettier)
+如果在创建项目时选择了使用 Typescript,代码校验就只提供 Tslint,要是没选 TypeScript,就提供 Eslint 供选择，Eslint 相关的提供了[eslint with airbnb config](https://www.npmjs.com/package/eslint-config-airbnb) 和 [eslint with prettier config](https://www.npmjs.com/package/eslint-config-prettier),推荐使用 airbnb config
 
-#### Linter condition
+要想修改一些校验规则，可以修改项目根目录下的.eslintrc 或者 tslint.json
 
-lint when save code or lint when commit code,recommended use when commit,for faster compile,in package.json
+#### 检测时机
+
+可以选择在代码保存或者提交代码的时候校验,为了代码更快的编译，在提交时校验比较好。提交代码校验的相关配置在 package.json 中
 
 ```
 "husky": {
@@ -190,19 +192,17 @@ lint when save code or lint when commit code,recommended use when commit,for fas
 
 ### State Management
 
-when use handy-cli,you can select the way to controll you app's state
+可供选择的状态管理方式
 
 - Normal(the build in Context API)
 
 - Mobx
 
-- Dva(not yet)
+- Dva(开发中))
 
 ### Use Ant Design
 
-After select `ant design` feature when create new apps,you can use antd easy
-
-in you code, add
+handy-cli 提供了 ant-design 的**按需使用加载**,创建项目时选择了 ant-design 后可以零配置的直接使用
 
 ```
 + import { Pagination } from "antd";
@@ -210,21 +210,19 @@ in you code, add
   <Search />
 ```
 
-you can see the UI changed,you can use antd `according to the need to load` with noting to configure
+#### 自定义 ant-design 的样式主题
 
-#### custom ant design theme
-
-under you app root directory,you can see a file named modifyVar.json, you can override [the less styles variable defined there](https://github.com/ant-design/ant-design/blob/master/components/style/themes/default.less),_note!!_,when you changed the modifyVar.json, the dev server will restart auto!!!,you need not manually restart service
+如果选择了使用 ant-design，在项目根目录下会有个 modifyVar.json 文件，在[这里定义的那些 less 样式变量](https://github.com/ant-design/ant-design/blob/master/components/style/themes/default.less),都可以在 modifyVar.json 中赋予新值，保存后，**不用重启服务,自动会重启**,页面样式就变了
 
 ### Styles And Modules
 
-support less,sass,stylus and css modules
+支持 less,sass,stylus and css modules
 
-if you want use css modules,you need named the file with the suffix `.module.css 、 .module.less、 .module.sass、.module.styl`
+注意: 如何想使用 css modules,样式文件要以 `.module.css 、 .module.less、 .module.sass、.module.styl`作为后缀
 
 ### Proxy
 
-add a proxy field to your package.json,for example
+开发时要代理到后端服务，在 package.json 中新增 proxy 字段，如下
 
 ```
  "proxy": "http://localhost:4000",
