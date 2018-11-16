@@ -8,7 +8,9 @@ module.exports = api => {
     type: "list",
     name: "linter",
     message: "linter type",
-    when: answers => answers.features && answers.features.includes("linter") && !answers.features.includes("typescript"),
+    when: answers => answers.features
+      && answers.features.includes("linter")
+      && !answers.features.includes("typescript"),
     choices: [
       {
         name: "eslint with prettier",
@@ -17,10 +19,13 @@ module.exports = api => {
       {
         name: "eslint with airbnb",
         value: "eslint_airbnb"
+      },
+      {
+        name: "eslint with ali config",
+        value: "eslint_ali"
       }
     ]
   });
-
 
   api.addChoicesBelowFeature({
     type: "list",

@@ -8,6 +8,17 @@ const pkgExtends = {
       "tslint-react": "^3.6.0"
     }
   },
+  eslint_ali: {
+    devDependencies: {
+      eslint: "^5.6.0",
+      "eslint-config-ali": "^3.1.0",
+      "eslint-plugin-import": "^2.14.0",
+      "eslint-plugin-react": "^7.11.1"
+    },
+    eslintrcExtend: {
+      extends: "eslint-config-ali/react"
+    }
+  },
   eslint_airbnb: {
     devDependencies: {
       eslint: "^5.6.0",

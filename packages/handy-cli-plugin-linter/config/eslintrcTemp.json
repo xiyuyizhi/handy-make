@@ -19,6 +19,7 @@
   },
   "rules": {
     "no-console": 0,
+    "eqeqeq": 2,
     "quotes": [2, "double"],
     "class-methods-use-this": 0,
     "import/no-unresolved": 0,

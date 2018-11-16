@@ -1,9 +1,9 @@
 import { Fetcher } from "handy-demo-common";
 import Scroll from "components/Scroll/Scroll";
+import "handy-demo-common/index.css";
 import Search from "./components/Search/Search";
 import ResultList from "./components/ResultList/ResultList";
 
-import "handy-demo-common/index.css";
 
 export default class IndexGitSearch extends React.Component {
   constructor(props) {

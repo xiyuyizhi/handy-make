@@ -1,10 +1,9 @@
 import { Provider } from "mobx-react";
 import Scroll from "components/Scroll/Scroll";
 import SearchGitStore from "stores/SearchGitStore";
+import "handy-demo-common/index.css";
 import Search from "./components/Search/Search";
 import ResultList from "./components/ResultList/ResultList";
-
-import "handy-demo-common/index.css";
 
 export default () => {
   const searchGitStore = new SearchGitStore();
