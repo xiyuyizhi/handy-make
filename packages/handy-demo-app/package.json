@@ -1,6 +1,6 @@
 {
   "name": "handy-demo-app",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "demo app when use handy-cli to create project",
   "main": "index.js",
   "repository": {
@@ -17,7 +17,7 @@
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-jsx-a11y": "^6.1.1",
     "eslint-plugin-react": "^7.11.1",
-    "handy-service": "^1.0.5"
+    "handy-service": "^1.0.6"
   },
   "dependencies": {
     "handy-demo-common": "^1.0.4",
