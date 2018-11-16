@@ -1,9 +1,9 @@
 {
   "name": "handy-cli-plugin-antd",
-  "version": "1.0.4",
+  "version": "1.0.7",
   "author": "xiyuyizhi",
   "dependencies": {
-    "handy-utils-shared": "^1.0.4"
+    "handy-utils-shared": "^1.0.7"
   },
   "devDependencies": {
     "antd": "^3.8.2",
