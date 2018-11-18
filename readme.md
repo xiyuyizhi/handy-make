@@ -163,7 +163,7 @@ if (module.hot) {
 
 支持 Tslint 和 Eslint
 
-如果在创建项目时选择了使用 Typescript,代码校验就只提供 Tslint,要是没选 TypeScript,就提供 Eslint 供选择，Eslint 相关的提供了[eslint with airbnb config](https://www.npmjs.com/package/eslint-config-airbnb) 和 [eslint with prettier config](https://www.npmjs.com/package/eslint-config-prettier),推荐使用 airbnb config
+如果在创建项目时选择了使用 Typescript,代码校验就只提供 Tslint,要是没选 TypeScript,就提供 Eslint 供选择，Eslint 相关的提供了[eslint with airbnb config](https://www.npmjs.com/package/eslint-config-airbnb) , [eslint with prettier config](https://www.npmjs.com/package/eslint-config-prettier),[eslint-config-ali](https://www.npmjs.com/package/eslint-config-ali)推荐使用 airbnb config
 
 要想修改一些校验规则，可以修改项目根目录下的.eslintrc 或者 tslint.json
 
