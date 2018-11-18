@@ -163,7 +163,7 @@ on you apps root directory,after commit your code , you can run `handy eject` to
 
 Support eslint and tslint.
 
-when you select the TypeScript feature,there is only Tslint allow,otherwise support [eslint with airbnb config](https://www.npmjs.com/package/eslint-config-airbnb) and [eslint with prettier config](https://www.npmjs.com/package/eslint-config-prettier)
+when you select the TypeScript feature,there is only Tslint allow,otherwise support [eslint with airbnb config](https://www.npmjs.com/package/eslint-config-airbnb) , [eslint with prettier config](https://www.npmjs.com/package/eslint-config-prettier),[eslint-config-ali](https://www.npmjs.com/package/eslint-config-ali)
 
 #### Linter condition
 
