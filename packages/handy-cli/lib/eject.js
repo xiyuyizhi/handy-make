@@ -6,29 +6,16 @@ const path = require("path");
 const { extendPkgJson, installDeps } = require("handy-utils-shared");
 
 module.exports = async () => {
-  const { ensureInject } = await inquirer.prompt({
-    type: "confirm",
-    name: "ensureInject",
-    message: "ensure to inject webpack config to project?"
-  });
-  if (!ensureInject) return;
+  const { ensureInject } = await inquirer.prompt({ type: "confirm", name: "ensureInject", message: "ensure to inject webpack config to project?" });
+  if (!ensureInject) { return; }
 
   // check git status
-  const { stdout } = execa.sync("git", ["status", "--porcelain"], {
-    stdio: "pipe"
-  });
+  const { stdout } = execa.sync("git", [
+    "status", "--porcelain"
+  ], { stdio: "pipe" });
 
   if (stdout) {
-    console.error(
-      chalk.red("This git repository has untracked files or uncommitted changes:")
-        + "\n\n"
-        + stdout
-          .split("\n")
-          .map(line => line.match(/ .*/g)[0].trim())
-          .join("\n")
-        + "\n\n"
-        + chalk.red("Remove untracked files, stash or commit any changes, and try again.")
-    );
+    console.error(chalk.red("This git repository has untracked files or uncommitted changes:") + "\n\n" + stdout.split("\n").map(line => line.match(/ .*/g)[0].trim()).join("\n") + "\n\n" + chalk.red("Remove untracked files, stash or commit any changes, and try again."));
     process.exit(1);
   }
 
@@ -39,7 +26,7 @@ module.exports = async () => {
   const appRoot = process.cwd();
 
   ["config", "scripts"].forEach(dir => {
-    fs.copyFileSync(path.join(handyServiceRoot, dir), appRoot);
+    fs.copySync(path.join(handyServiceRoot, dir), path.join(appRoot, dir));
   });
 
   // copy  extendWebpack file to appRoot/config folder
@@ -48,28 +35,18 @@ module.exports = async () => {
     "handy-cli-plugin-typescript": "tsExtendWebpack.js",
     "handy-cli-plugin-antd": "antdExtendWebpack.js"
   };
-  Object.keys(extendsPlugins).forEach(dep => {
-    const content = fs.readFileSync(
-      path.join(handyServiceRoot, "node_modules", dep, "extendWebpack.js")
-    );
-    const target = path.join(appRoot, "config", "extends", extendsPlugins[dep]);
-    fs.ensureFileSync(target);
-    fs.writeFileSync(target, content);
-  });
+  Object
+    .keys(extendsPlugins)
+    .forEach(dep => {
+      const content = fs.readFileSync(path.join(handyServiceRoot, "node_modules", dep, "extendWebpack.js"));
+      const target = path.join(appRoot, "config", "extends", extendsPlugins[dep]);
+      fs.ensureFileSync(target);
+      fs.writeFileSync(target, content);
+    });
 
   // copy webpack.ts-transformers.js to extends
-  const transformers = fs.readFileSync(
-    path.join(
-      handyServiceRoot,
-      "node_modules",
-      "handy-cli-plugin-antd",
-      "webpack.ts-transformers.js"
-    )
-  );
-  fs.writeFileSync(
-    path.join(appRoot, "config", "extends", "webpack.ts-transformers.js"),
-    transformers
-  );
+  const transformers = fs.readFileSync(path.join(handyServiceRoot, "node_modules", "handy-cli-plugin-antd", "webpack.ts-transformers.js"));
+  fs.writeFileSync(path.join(appRoot, "config", "extends", "webpack.ts-transformers.js"), transformers);
 
   // remove not used content in webpack.config.dev.js、webpack.config.prod.js
   ["webpack.config.dev.js", "webpack.config.prod.js"].forEach(file => {

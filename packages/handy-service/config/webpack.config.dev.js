@@ -9,7 +9,9 @@ const paths = require("./paths");
 const multiPage = require("./multiPage");
 const getClientEnvironment = require("./env");
 const presets = paths.appPresets;
-const hasAntd = presets.features.includes("antd");
+const hasAntd = presets
+  .features
+  .includes("antd");
 
 const publicPath = "/";
 const publicUrl = " ";
@@ -28,20 +30,16 @@ const stylusModuleRegex = /\.module\.styl$/;
 
 const getStyleLoaders = (cssOptions, preProcessor, preProcessorOptions) => {
   const loaders = [
-    require.resolve("style-loader"),
-    {
+    require.resolve("style-loader"), {
       loader: require.resolve("css-loader"),
       options: cssOptions
-    },
-    {
+    }, {
       loader: require.resolve("postcss-loader"),
       options: {
         ident: "postcss",
         plugins: () => [
           require("postcss-flexbugs-fixes"),
-          autoprefixer({
-            flexbox: "no-2009"
-          })
+          autoprefixer({ flexbox: "no-2009" })
         ]
       }
     }
@@ -57,7 +55,7 @@ const getStyleLoaders = (cssOptions, preProcessor, preProcessorOptions) => {
 
 const config = {
   mode: "development",
-  devtool: "cheap-module-source-map",
+  devtool: "eval-source-map",
   entry: multiPage.appEntries,
   output: {
     filename: outputFileName,
@@ -65,7 +63,15 @@ const config = {
     publicPath
   },
   resolve: {
-    extensions: [".web.js", ".mjs", ".js", ".json", ".web.jsx", ".jsx"],
+    modules: ["node_modules"],
+    extensions: [
+      ".web.js",
+      ".mjs",
+      ".js",
+      ".json",
+      ".web.jsx",
+      ".jsx"
+    ],
     alias: {
       components: path.resolve(paths.appPath, "src", "components"),
       modules: path.resolve(paths.appPath, "src", "modules"),
@@ -89,88 +95,99 @@ const config = {
         enforce: "pre",
         test: /\.js$/,
         loader: require.resolve("source-map-loader")
-      },
-      {
+      }, {
         oneOf: [
           {
-            test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/],
+            test: [
+              /\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/
+            ],
             loader: require.resolve("url-loader"),
             options: {
               limit: 10000,
               name: "static/media/[name].[hash:8].[ext]"
             }
-          },
-          {
+          }, {
             test: /\.(js|jsx|mjs)$/,
             include: paths.appSrc,
             loader: require.resolve("babel-loader"),
             options: {
               presets: [
                 [
-                  require("@babel/preset-env"),
-                  {
+                  require("@babel/preset-env"), {
                     useBuiltIns: "entry"
                   }
                 ],
                 [
-                  require("@babel/preset-react"),
-                  {
+                  require("@babel/preset-react"), {
                     development: true
                   }
                 ]
               ],
               plugins: [
-                [require("@babel/plugin-proposal-decorators"), { legacy: true }],
-                [require("@babel/plugin-proposal-class-properties"), { loose: true }]
+                [
+                  require("@babel/plugin-proposal-decorators"), {
+                    legacy: true
+                  }
+                ],
+                [
+                  require("@babel/plugin-proposal-class-properties"), {
+                    loose: true
+                  }
+                ]
               ]
             }
-          },
-          {
+          }, {
             test: cssRegex,
             exclude: cssModuleRegex,
-            use: getStyleLoaders({
-              importLoaders: 1
-            })
-          },
-          {
+            use: getStyleLoaders({ importLoaders: 1 })
+          }, {
             test: cssModuleRegex,
-            use: getStyleLoaders({
-              importLoaders: 1,
-              modules: true
-            })
-          },
-          {
+            use: getStyleLoaders({ importLoaders: 1, modules: true })
+          }, {
             test: sassRegex,
             exclude: sassModuleRegex,
-            use: getStyleLoaders({ importLoaders: 2 }, "sass-loader")
-          },
-          {
+            use: getStyleLoaders({
+              importLoaders: 2
+            }, "sass-loader")
+          }, {
             test: sassModuleRegex,
-            use: getStyleLoaders({ importLoaders: 2, modules: true }, "sass-loader")
-          },
-          {
+            use: getStyleLoaders({
+              importLoaders: 2,
+              modules: true
+            }, "sass-loader")
+          }, {
             test: lessRegex,
             exclude: lessModuleRegex,
-            use: getStyleLoaders({ importLoaders: 2 }, "less-loader", {
-              modifyVars: hasAntd ? require(paths.modifyVarsJson) : {},
+            use: getStyleLoaders({
+              importLoaders: 2
+            }, "less-loader", {
+              modifyVars: hasAntd
+                ? require(paths.modifyVarsJson)
+                : {},
               javascriptEnabled: true
             })
-          },
-          {
+          }, {
             test: lessModuleRegex,
-            use: getStyleLoaders({ importLoaders: 2, modules: true }, "less-loader")
-          },
-          {
+            use: getStyleLoaders({
+              importLoaders: 2,
+              modules: true
+            }, "less-loader")
+          }, {
             test: stylusRegex,
             exclude: stylusModuleRegex,
-            use: getStyleLoaders({ importLoaders: 2 }, "stylus-loader")
-          },
-          {
+            use: getStyleLoaders({
+              importLoaders: 2
+            }, "stylus-loader")
+          }, {
             test: stylusModuleRegex,
-            use: getStyleLoaders({ importLoaders: 2, modules: true }, "stylus-loader")
-          },
-          {
-            exclude: [/\.(js|jsx|mjs)$/, /\.html$/, /\.json$/],
+            use: getStyleLoaders({
+              importLoaders: 2,
+              modules: true
+            }, "stylus-loader")
+          }, {
+            exclude: [
+              /\.(js|jsx|mjs)$/, /\.html$/, /\.json$/
+            ],
             loader: require.resolve("file-loader"),
             options: {
               name: "static/media/[name].[hash:8].[ext]"
@@ -184,11 +201,7 @@ const config = {
     new ReplaceHtmlPlugin(env.raw),
     new webpack.NamedModulesPlugin(),
     new webpack.DefinePlugin(env.stringified),
-    new webpack.ProvidePlugin({
-      React: "react",
-      ReactDOM: "react-dom",
-      PropTypes: "prop-types"
-    }),
+    new webpack.ProvidePlugin({ React: "react", ReactDOM: "react-dom", PropTypes: "prop-types" }),
     new webpack.HotModuleReplacementPlugin(),
     new CaseSensitivePathsPlugin(),
     new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/)
@@ -202,7 +215,10 @@ const config = {
   }
 };
 
-config.plugins = [...multiPage.htmlWebpackPlugins, ...config.plugins];
+config.plugins = [
+  ...multiPage.htmlWebpackPlugins,
+  ...config.plugins
+];
 
 if (!presets) {
   console.log(chalk.red("package.json not includes presets field"));
@@ -211,18 +227,10 @@ if (!presets) {
 
 let extendWebpackPlugins;
 
-extendWebpackPlugins = [
-  "./extends/tsExtendWebpack",
-  "./extends/linterExtendWebpack",
-  "./extends/antdExtendWebpack"
-];
+extendWebpackPlugins = ["./extends/tsExtendWebpack", "./extends/linterExtendWebpack", "./extends/antdExtendWebpack"];
 
 // @remove-before-eject
-extendWebpackPlugins = [
-  "handy-cli-plugin-typescript/extendWebpack",
-  "handy-cli-plugin-linter/extendWebpack",
-  "handy-cli-plugin-antd/extendWebpack"
-];
+extendWebpackPlugins = ["handy-cli-plugin-typescript/extendWebpack", "handy-cli-plugin-linter/extendWebpack", "handy-cli-plugin-antd/extendWebpack"];
 // @remove-end-eject
 
 extendWebpackPlugins.forEach(plugin => {
