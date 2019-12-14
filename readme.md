@@ -245,11 +245,6 @@ handy-cli 提供了 ant-design 的**按需使用加载**,创建项目时选择�
 
 see more proxy [options](https://github.com/chimurai/http-proxy-middleware#options)
 
-## Todo
-
-[ ] integration [dva](https://github.com/dvajs/dva)
-
-[ ] dynamic load
 
 ## Development
 
