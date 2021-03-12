@@ -60,7 +60,7 @@
     "postcss-flexbugs-fixes": "^4.1.0",
     "postcss-loader": "^3.0.0",
     "prettier": "^1.14.3",
-    "react-dev-utils": "^5.0.2",
+    "react-dev-utils": "^11.0.4",
     "sass": "^1.14.0",
     "sass-loader": "^7.1.0",
     "source-map-loader": "^0.2.4",
