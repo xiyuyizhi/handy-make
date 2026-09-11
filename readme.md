@@ -1,3 +1,5 @@
+
+
 ## handy-cli
 
 > 初始化 react 应用的脚手架工具，支持常用的特性，灵感来自 vue-cli 和 create-react-app
@@ -21,6 +23,8 @@
 - 支持代码保存时和代码提交时校验代码风格
 
 ## 安装
+
+需要 Node.js >= 8
 
 ```
 如果你使用npm管理node包
@@ -74,24 +78,24 @@ handy eject
 ├── .gitignore
 └── src
     ├── components
-    │   ├── ResultItem
-    │   │   └── ResultItem.js
-    │   └── Scroll
-    │       └── Scroll.js
+    │   ├── ResultItem
+    │   │   └── ResultItem.js
+    │   └── Scroll
+    │       └── Scroll.js
     ├── modules
-    │   └── mobxGitSearch
-    │       ├── components
-    │       │   ├── ResultList
-    │       │   │   └── ResultList.js
-    │       │   └── Search
-    │       │       └── Search.js
-    │       └── index.js
+    │   └── mobxGitSearch
+    │       ├── components
+    │       │   ├── ResultList
+    │       │   │   └── ResultList.js
+    │       │   └── Search
+    │       │       └── Search.js
+    │       └── index.js
     ├── pages
-    │   └── index
-    │       ├── index.js
-    │       └── routes.js
+    │   └── index
+    │       ├── index.js
+    │       └── routes.js
     ├── stores
-    │   └── SearchGitStore.js
+    │   └── SearchGitStore.js
     └── utils
         └── index.js
 ```
@@ -135,9 +139,9 @@ import {shake} from "../utils"
 ```
 src
 ├── pages
-    └── index
+    └── index
     │   ├── index.js
-    │   └── routes.js
+    │   └── routes.js
     ├── doule12
         │── index.js
 
